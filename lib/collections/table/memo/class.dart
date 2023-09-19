@@ -296,27 +296,27 @@ class Memo {
   // List<String> L019 = [];
   // List<String> L020 = [];
   //
-  // Map<String, Object?> M000 = {};
-  // Map<String, Object?> M001 = {};
-  // Map<String, Object?> M002 = {};
-  // Map<String, Object?> M003 = {};
-  // Map<String, Object?> M004 = {};
-  // Map<String, Object?> M005 = {};
-  // Map<String, Object?> M006 = {};
-  // Map<String, Object?> M007 = {};
-  // Map<String, Object?> M008 = {};
-  // Map<String, Object?> M009 = {};
-  // Map<String, Object?> M010 = {};
-  // Map<String, Object?> M011 = {};
-  // Map<String, Object?> M012 = {};
-  // Map<String, Object?> M013 = {};
-  // Map<String, Object?> M014 = {};
-  // Map<String, Object?> M015 = {};
-  // Map<String, Object?> M016 = {};
-  // Map<String, Object?> M017 = {};
-  // Map<String, Object?> M018 = {};
-  // Map<String, Object?> M019 = {};
-  // Map<String, Object?> M020 = {};
+  // Map<String, Object?> J000 = {};
+  // Map<String, Object?> J001 = {};
+  // Map<String, Object?> J002 = {};
+  // Map<String, Object?> J003 = {};
+  // Map<String, Object?> J004 = {};
+  // Map<String, Object?> J005 = {};
+  // Map<String, Object?> J006 = {};
+  // Map<String, Object?> J007 = {};
+  // Map<String, Object?> J008 = {};
+  // Map<String, Object?> J009 = {};
+  // Map<String, Object?> J010 = {};
+  // Map<String, Object?> J011 = {};
+  // Map<String, Object?> J012 = {};
+  // Map<String, Object?> J013 = {};
+  // Map<String, Object?> J014 = {};
+  // Map<String, Object?> J015 = {};
+  // Map<String, Object?> J016 = {};
+  // Map<String, Object?> J017 = {};
+  // Map<String, Object?> J018 = {};
+  // Map<String, Object?> J019 = {};
+  // Map<String, Object?> J020 = {};
 
   String DocId = "";
 
@@ -606,27 +606,27 @@ class Memo {
       // 'L018': L018,
       // 'L019': L019,
       // 'L020': L020,
-      // 'M000': M000,
-      // 'M001': M001,
-      // 'M002': M002,
-      // 'M003': M003,
-      // 'M004': M004,
-      // 'M005': M005,
-      // 'M006': M006,
-      // 'M007': M007,
-      // 'M008': M008,
-      // 'M009': M009,
-      // 'M010': M010,
-      // 'M011': M011,
-      // 'M012': M012,
-      // 'M013': M013,
-      // 'M014': M014,
-      // 'M015': M015,
-      // 'M016': M016,
-      // 'M017': M017,
-      // 'M018': M018,
-      // 'M019': M019,
-      // 'M020': M020,
+      // 'J000': J000,
+      // 'J001': J001,
+      // 'J002': J002,
+      // 'J003': J003,
+      // 'J004': J004,
+      // 'J005': J005,
+      // 'J006': J006,
+      // 'J007': J007,
+      // 'J008': J008,
+      // 'J009': J009,
+      // 'J010': J010,
+      // 'J011': J011,
+      // 'J012': J012,
+      // 'J013': J013,
+      // 'J014': J014,
+      // 'J015': J015,
+      // 'J016': J016,
+      // 'J017': J017,
+      // 'J018': J018,
+      // 'J019': J019,
+      // 'J020': J020,
       'DocId' : DocId,
     });
   }
@@ -921,27 +921,27 @@ class Memo {
     // obj.L018 = data['L018'];
     // obj.L019 = data['L019'];
     // obj.L020 = data['L020'];
-    // obj.M000 = data['M000'];
-    // obj.M001 = data['M001'];
-    // obj.M002 = data['M002'];
-    // obj.M003 = data['M003'];
-    // obj.M004 = data['M004'];
-    // obj.M005 = data['M005'];
-    // obj.M006 = data['M006'];
-    // obj.M007 = data['M007'];
-    // obj.M008 = data['M008'];
-    // obj.M009 = data['M009'];
-    // obj.M010 = data['M010'];
-    // obj.M011 = data['M011'];
-    // obj.M012 = data['M012'];
-    // obj.M013 = data['M013'];
-    // obj.M014 = data['M014'];
-    // obj.M015 = data['M015'];
-    // obj.M016 = data['M016'];
-    // obj.M017 = data['M017'];
-    // obj.M018 = data['M018'];
-    // obj.M019 = data['M019'];
-    // obj.M020 = data['M020'];
+    // obj.J000 = data['J000'];
+    // obj.J001 = data['J001'];
+    // obj.J002 = data['J002'];
+    // obj.J003 = data['J003'];
+    // obj.J004 = data['J004'];
+    // obj.J005 = data['J005'];
+    // obj.J006 = data['J006'];
+    // obj.J007 = data['J007'];
+    // obj.J008 = data['J008'];
+    // obj.J009 = data['J009'];
+    // obj.J010 = data['J010'];
+    // obj.J011 = data['J011'];
+    // obj.J012 = data['J012'];
+    // obj.J013 = data['J013'];
+    // obj.J014 = data['J014'];
+    // obj.J015 = data['J015'];
+    // obj.J016 = data['J016'];
+    // obj.J017 = data['J017'];
+    // obj.J018 = data['J018'];
+    // obj.J019 = data['J019'];
+    // obj.J020 = data['J020'];
 
     obj.DocId = data['DocId'];
     
