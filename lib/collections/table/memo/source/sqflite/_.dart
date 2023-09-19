@@ -84,13 +84,13 @@ class MemoSqflite {
         await MemoDb.rawQuery('SELECT COUNT(*) FROM Memo'));
   }
 
-  Future<void> upsert(Memo newObject) async {
-    var oldObject = await get(newObject.DocId);
+  Future<void> upsert(Memo obj) async {
+    var oldObject = await get(obj.DocId);
 
     if (oldObject != null) {
-      await update(newObject, oldObject);
+      await update(obj, oldObject);
     } else {
-      await insert(newObject);
+      await insert(obj);
     }
   }
 
@@ -109,14 +109,17 @@ class MemoSqflite {
   Future<int> insert(Memo object) async {
     await _ready();
 
+
+
     return await MemoDb.insert('Memo', toMap(object: object));
   }
 
   Future<int> update(Memo object, Memo oldObject) async {
     await _ready();
 
+
     return await MemoDb.update(
-        'Memo', toMap(object: oldObject),
+        'Memo', toMap(object: object),
         where: 'DocId = ?', whereArgs: [oldObject.DocId]);
   }
 

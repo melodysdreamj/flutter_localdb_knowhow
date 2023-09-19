@@ -14,12 +14,12 @@ class NewModelFlutterSecureStorage {
     return NewModel.fromString(json);
   }
 
-  Future<void> upsert(NewModel newObject) async {
+  Future<void> upsert(NewModel obj) async {
     await _ready();
 
-    String json = newObject.toString();
+    String json = obj.toString();
 
-    await storage.write(key: newObject.DocId, value: json);
+    await storage.write(key: obj.DocId, value: json);
   }
 
 

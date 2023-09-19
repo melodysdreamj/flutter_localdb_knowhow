@@ -14,10 +14,10 @@ class NewModelGetStorage {
     return NewModel.fromString(json);
   }
 
-  upsert(NewModel newObject) {
+  upsert(NewModel obj) {
     final box = GetStorage();
-    String json = newObject.toString();
-    box.write(newObject.DocId, json);
+    String json = obj.toString();
+    box.write(obj.DocId, json);
   }
 
   delete(String docId) {

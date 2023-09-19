@@ -14,12 +14,12 @@ class NewModelSharedPreferences {
     return NewModel.fromString(json);
   }
 
-  Future<void> upsert(NewModel newObject) async {
+  Future<void> upsert(NewModel obj) async {
     await _ready();
 
-    String json = newObject.toString();
+    String json = obj.toString();
 
-    await prefs.setString(newObject.DocId, json);
+    await prefs.setString(obj.DocId, json);
   }
 
   //////////////////////////////////////

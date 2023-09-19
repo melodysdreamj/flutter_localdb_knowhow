@@ -1,11 +1,7 @@
 import 'dart:convert';
 
-import 'config.dart';
 
 class NewModel {
-  NewModel() {
-    DocId = NewModelConfig.to.generateDocId();
-  }
 
   int I000 = 0;
 
@@ -318,7 +314,6 @@ class NewModel {
   // Map<String, Object?> M019 = {};
   // Map<String, Object?> M020 = {};
 
-  String DocId = "";
 
   @override
   String toString() {
@@ -627,7 +622,6 @@ class NewModel {
       // 'M018': M018,
       // 'M019': M019,
       // 'M020': M020,
-      'DocId' : DocId,
     });
   }
 
@@ -943,17 +937,8 @@ class NewModel {
     // obj.M019 = data['M019'];
     // obj.M020 = data['M020'];
 
-    obj.DocId = data['DocId'];
     
     
     return obj;
   }
-
 }
-
-const paramListNewTable = [
-  "I000",
-
-
-  "DocId",
-];
