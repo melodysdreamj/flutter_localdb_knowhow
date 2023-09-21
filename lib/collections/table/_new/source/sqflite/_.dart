@@ -116,7 +116,7 @@ class NewModelSqflite {
   Future<int> update(NewModel object, NewModel oldObject) async {
     await _ready();
 
-    return await NewModelDb.update('NewModel', toMap(object: oldObject),
+    return await NewModelDb.update('NewModel', toMap(object: object),
         where: 'DocId = ?', whereArgs: [oldObject.DocId]);
   }
 
@@ -1192,7 +1192,7 @@ class NewModelSqflite {
   _handleColumnChanged() async {
     var _ = ManagingSqfliteTableNewModel().get();
 
-    var columns = paramListNewTable.map((e) => e[0].toString()).toList();
+    var columns = paramListNewModel.map((e) => e[0].toString()).toList();
     if (_.UpdateMillis == 0) {
       // 만약 한번도 작동한 적이 없다면 바로 컬럼에 넣어줍니다.
       _.Version = 1;
@@ -1214,12 +1214,13 @@ class NewModelSqflite {
     if (needDeleteParams.isNotEmpty || needCreateParams.isNotEmpty) {
       _.Version++;
       _.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
+      _.Columns = columns;
       ManagingSqfliteTableNewModel().upsert(_);
     }
 
     // 추가해야하는 부분을 진행해줍니다.
     for (var item in needCreateParams) {
-      var param = paramListNewTable.firstWhere((element) => element[0] == item);
+      var param = paramListNewModel.firstWhere((element) => element[0] == item);
       await _addColumns(param[0], param[1]);
     }
 
@@ -1245,16 +1246,21 @@ class NewModelSqflite {
       defaultValue = "'[]'";
     }
     await NewModelDb.execute(
-        "ALTER TABLE NewTable ADD COLUMN $newColumnName $columnType DEFAULT $defaultValue");
+        "ALTER TABLE NewModel ADD COLUMN $newColumnName $columnType DEFAULT $defaultValue");
   }
 
-  _removeColumns(List<String> columnsToDelete) async {
+  _removeColumns(List<dynamic> columnsToDelete) async {
+
+    if(columnsToDelete.isEmpty) {
+      return;
+    }
+
     // 임시 테이블 이름 생성
-    String tempTableName = 'temp_NewTable';
+    String tempTableName = 'temp_NewModel';
 
     // 기존 테이블의 모든 컬럼 정보 가져오기
     List<Map> columns =
-        await NewModelDb.rawQuery('PRAGMA table_info(NewTable)');
+        await NewModelDb.rawQuery('PRAGMA table_info(NewModel)');
     List<String> allColumnNames =
         columns.map((col) => col['name'] as String).toList();
 
@@ -1267,14 +1273,14 @@ class NewModelSqflite {
       await txn.execute('''
       CREATE TABLE $tempTableName AS 
       SELECT $remainingColumns 
-      FROM NewTable
+      FROM NewModel
     ''');
 
       // 기존 테이블 삭제
-      await txn.execute('DROP TABLE NewTable');
+      await txn.execute('DROP TABLE NewModel');
 
       // 임시 테이블의 이름을 원래 테이블 이름으로 변경
-      await txn.execute('ALTER TABLE $tempTableName RENAME TO NewTable');
+      await txn.execute('ALTER TABLE $tempTableName RENAME TO NewModel');
     });
   }
 

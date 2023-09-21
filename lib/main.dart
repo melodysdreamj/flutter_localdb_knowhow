@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localdb_knowhow/collections/table/_new/source/sqflite/_.dart';
-import 'package:flutter_localdb_knowhow/collections/table/memo/source/get_storage/_.dart';
 import 'package:flutter_localdb_knowhow/collections/table/memo/source/sqflite/_.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:styled_widget/styled_widget.dart';
@@ -56,21 +55,40 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   button01(BuildContext context) {
-    var obj = Memo();
-    obj.DocId = 'my';
-    obj.I000 = 1004;
-
-    MemoGetStorage().upsert(obj);
-
-    var obj2 = MemoGetStorage().get('my');
-    print(obj2?.toString());
+    // var obj = Memo();
+    // obj.DocId = 'my';
+    // obj.I000 = 1004;
+    //
+    // MemoGetStorage().upsert(obj);
+    //
+    // var obj2 = MemoGetStorage().get('my');
+    // print(obj2?.toString());
 
 
   }
 
-  button02(BuildContext context) {}
+  button02(BuildContext context) async {
+    var obj = Memo();
+    obj.I000 = 1005;
+    obj.S000 = 'hihi0';
+    obj.S001 = 'love';
 
-  button03(BuildContext context) {}
+
+    await MemoSqflite().upsert(obj);
+
+
+    var objs = await MemoSqflite().getAll();
+    for(var obj in objs) {
+      print(obj.toString());
+    }
+  }
+
+  button03(BuildContext context) async {
+    var objs = await MemoSqflite().getAll();
+    for(var obj in objs) {
+      print(obj.toString());
+    }
+  }
 
   button04(BuildContext context) {}
 

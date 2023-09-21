@@ -116,7 +116,7 @@ class MemoSqflite {
   Future<int> update(Memo object, Memo oldObject) async {
     await _ready();
 
-    return await MemoDb.update('Memo', toMap(object: oldObject),
+    return await MemoDb.update('Memo', toMap(object: object),
         where: 'DocId = ?', whereArgs: [oldObject.DocId]);
   }
 
@@ -224,8 +224,8 @@ class MemoSqflite {
     // map["I097"] = object.I097;
     // map["I098"] = object.I098;
     // map["I099"] = object.I099;
-    // map["S000"] = object.S000;
-    // map["S001"] = object.S001;
+    map["S000"] = object.S000;
+    map["S001"] = object.S001;
     // map["S002"] = object.S002;
     // map["S003"] = object.S003;
     // map["S004"] = object.S004;
@@ -540,8 +540,8 @@ class MemoSqflite {
     // object.I097 = map["I097"] ?? 0;
     // object.I098 = map["I098"] ?? 0;
     // object.I099 = map["I099"] ?? 0;
-    // object.S000 = map["S000"] ?? "";
-    // object.S001 = map["S001"] ?? "";
+    object.S000 = map["S000"] ?? "";
+    object.S001 = map["S001"] ?? "";
     // object.S002 = map["S002"] ?? "";
     // object.S003 = map["S003"] ?? "";
     // object.S004 = map["S004"] ?? "";
@@ -873,8 +873,8 @@ class MemoSqflite {
           // ",I097 integer not null"
           // ",I098 integer not null"
           // ",I099 integer not null"
-          // ",S000 text not null"
-          // ",S001 text not null"
+          ",S000 text not null"
+          ",S001 text not null"
           // ",S002 text not null"
           // ",S003 text not null"
           // ",S004 text not null"
@@ -1081,8 +1081,8 @@ class MemoSqflite {
 
       await txn
           .execute('CREATE VIRTUAL TABLE if not exists MemoFTS4 USING FTS4('
-              // 'S000'
-              // ',S001'
+              'S000'
+              ',S001'
               // ',S002'
               // ',S003'
               // ',S004'
@@ -1192,7 +1192,7 @@ class MemoSqflite {
   _handleColumnChanged() async {
     var _ = ManagingSqfliteTableMemo().get();
 
-    var columns = paramListNewTable.map((e) => e[0].toString()).toList();
+    var columns = paramListMemo.map((e) => e[0].toString()).toList();
     if (_.UpdateMillis == 0) {
       // 만약 한번도 작동한 적이 없다면 바로 컬럼에 넣어줍니다.
       _.Version = 1;
@@ -1214,12 +1214,13 @@ class MemoSqflite {
     if (needDeleteParams.isNotEmpty || needCreateParams.isNotEmpty) {
       _.Version++;
       _.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
+      _.Columns = columns;
       ManagingSqfliteTableMemo().upsert(_);
     }
 
     // 추가해야하는 부분을 진행해줍니다.
     for (var item in needCreateParams) {
-      var param = paramListNewTable.firstWhere((element) => element[0] == item);
+      var param = paramListMemo.firstWhere((element) => element[0] == item);
       await _addColumns(param[0], param[1]);
     }
 
@@ -1245,16 +1246,21 @@ class MemoSqflite {
       defaultValue = "'[]'";
     }
     await MemoDb.execute(
-        "ALTER TABLE NewTable ADD COLUMN $newColumnName $columnType DEFAULT $defaultValue");
+        "ALTER TABLE Memo ADD COLUMN $newColumnName $columnType DEFAULT $defaultValue");
   }
 
-  _removeColumns(List<String> columnsToDelete) async {
+  _removeColumns(List<dynamic> columnsToDelete) async {
+
+    if(columnsToDelete.isEmpty) {
+      return;
+    }
+
     // 임시 테이블 이름 생성
-    String tempTableName = 'temp_NewTable';
+    String tempTableName = 'temp_Memo';
 
     // 기존 테이블의 모든 컬럼 정보 가져오기
     List<Map> columns =
-        await MemoDb.rawQuery('PRAGMA table_info(NewTable)');
+        await MemoDb.rawQuery('PRAGMA table_info(Memo)');
     List<String> allColumnNames =
         columns.map((col) => col['name'] as String).toList();
 
@@ -1267,14 +1273,14 @@ class MemoSqflite {
       await txn.execute('''
       CREATE TABLE $tempTableName AS 
       SELECT $remainingColumns 
-      FROM NewTable
+      FROM Memo
     ''');
 
       // 기존 테이블 삭제
-      await txn.execute('DROP TABLE NewTable');
+      await txn.execute('DROP TABLE Memo');
 
       // 임시 테이블의 이름을 원래 테이블 이름으로 변경
-      await txn.execute('ALTER TABLE $tempTableName RENAME TO NewTable');
+      await txn.execute('ALTER TABLE $tempTableName RENAME TO Memo');
     });
   }
 

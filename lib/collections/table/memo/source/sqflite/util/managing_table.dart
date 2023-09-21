@@ -30,7 +30,7 @@ class SqfliteTableMemo {
 
   int UpdateMillis = 0;
 
-  int Version = 0;
+  int Version = 1;
   // int I002 = 0;
   // int I003 = 0;
   // int I004 = 0;
@@ -130,8 +130,8 @@ class SqfliteTableMemo {
   // int I098 = 0;
   // int I099 = 0;
   //
-  // String S000 = "";
-  // String S001 = "";
+  String S000 = "";
+  String S001 = "";
   // String S002 = "";
   // String S003 = "";
   // String S004 = "";
@@ -295,27 +295,27 @@ class SqfliteTableMemo {
   // num R029 = 0;
   // num R030 = 0;
   //
-  List<String> Columns = [];
-  // List<String> L001 = [];
-  // List<String> L002 = [];
-  // List<String> L003 = [];
-  // List<String> L004 = [];
-  // List<String> L005 = [];
-  // List<String> L006 = [];
-  // List<String> L007 = [];
-  // List<String> L008 = [];
-  // List<String> L009 = [];
-  // List<String> L010 = [];
-  // List<String> L011 = [];
-  // List<String> L012 = [];
-  // List<String> L013 = [];
-  // List<String> L014 = [];
-  // List<String> L015 = [];
-  // List<String> L016 = [];
-  // List<String> L017 = [];
-  // List<String> L018 = [];
-  // List<String> L019 = [];
-  // List<String> L020 = [];
+  List<dynamic> Columns = [];
+  // List<dynamic> L001 = [];
+  // List<dynamic> L002 = [];
+  // List<dynamic> L003 = [];
+  // List<dynamic> L004 = [];
+  // List<dynamic> L005 = [];
+  // List<dynamic> L006 = [];
+  // List<dynamic> L007 = [];
+  // List<dynamic> L008 = [];
+  // List<dynamic> L009 = [];
+  // List<dynamic> L010 = [];
+  // List<dynamic> L011 = [];
+  // List<dynamic> L012 = [];
+  // List<dynamic> L013 = [];
+  // List<dynamic> L014 = [];
+  // List<dynamic> L015 = [];
+  // List<dynamic> L016 = [];
+  // List<dynamic> L017 = [];
+  // List<dynamic> L018 = [];
+  // List<dynamic> L019 = [];
+  // List<dynamic> L020 = [];
   // List<Memo2> J000 = [];
   // List<Memo2> J001 = [];
   // List<Memo2> J002 = [];
@@ -442,8 +442,8 @@ class SqfliteTableMemo {
       // 'I097': I097,
       // 'I098': I098,
       // 'I099': I099,
-      // 'S000': S000,
-      // 'S001': S001,
+      'S000': S000,
+      'S001': S001,
       // 'S002': S002,
       // 'S003': S003,
       // 'S004': S004,
@@ -754,8 +754,8 @@ class SqfliteTableMemo {
     // obj.I097 = data['I097'] ?? 0;
     // obj.I098 = data['I098'] ?? 0;
     // obj.I099 = data['I099'] ?? 0;
-    // obj.S000 = data['S000'] ?? "";
-    // obj.S001 = data['S001'] ?? "";
+    obj.S000 = data['S000'] ?? "";
+    obj.S001 = data['S001'] ?? "";
     // obj.S002 = data['S002'] ?? "";
     // obj.S003 = data['S003'] ?? "";
     // obj.S004 = data['S004'] ?? "";

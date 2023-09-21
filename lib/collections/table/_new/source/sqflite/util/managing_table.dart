@@ -30,7 +30,7 @@ class SqfliteTableNewModel {
 
   int UpdateMillis = 0;
 
-  int Version = 0;
+  int Version = 1;
   // int I002 = 0;
   // int I003 = 0;
   // int I004 = 0;
@@ -295,27 +295,27 @@ class SqfliteTableNewModel {
   // num R029 = 0;
   // num R030 = 0;
   //
-  List<String> Columns = [];
-  // List<String> L001 = [];
-  // List<String> L002 = [];
-  // List<String> L003 = [];
-  // List<String> L004 = [];
-  // List<String> L005 = [];
-  // List<String> L006 = [];
-  // List<String> L007 = [];
-  // List<String> L008 = [];
-  // List<String> L009 = [];
-  // List<String> L010 = [];
-  // List<String> L011 = [];
-  // List<String> L012 = [];
-  // List<String> L013 = [];
-  // List<String> L014 = [];
-  // List<String> L015 = [];
-  // List<String> L016 = [];
-  // List<String> L017 = [];
-  // List<String> L018 = [];
-  // List<String> L019 = [];
-  // List<String> L020 = [];
+  List<dynamic> Columns = [];
+  // List<dynamic> L001 = [];
+  // List<dynamic> L002 = [];
+  // List<dynamic> L003 = [];
+  // List<dynamic> L004 = [];
+  // List<dynamic> L005 = [];
+  // List<dynamic> L006 = [];
+  // List<dynamic> L007 = [];
+  // List<dynamic> L008 = [];
+  // List<dynamic> L009 = [];
+  // List<dynamic> L010 = [];
+  // List<dynamic> L011 = [];
+  // List<dynamic> L012 = [];
+  // List<dynamic> L013 = [];
+  // List<dynamic> L014 = [];
+  // List<dynamic> L015 = [];
+  // List<dynamic> L016 = [];
+  // List<dynamic> L017 = [];
+  // List<dynamic> L018 = [];
+  // List<dynamic> L019 = [];
+  // List<dynamic> L020 = [];
   // List<NewModel2> J000 = [];
   // List<NewModel2> J001 = [];
   // List<NewModel2> J002 = [];
