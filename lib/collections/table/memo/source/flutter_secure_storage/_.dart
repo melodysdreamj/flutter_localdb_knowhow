@@ -14,12 +14,12 @@ class MemoFlutterSecureStorage {
     return Memo.fromString(json);
   }
 
-  Future<void> upsert(Memo newObject) async {
+  Future<void> upsert(Memo obj) async {
     await _ready();
 
-    String json = newObject.toString();
+    String json = obj.toString();
 
-    await storage.write(key: newObject.DocId, value: json);
+    await storage.write(key: obj.DocId, value: json);
   }
 
 

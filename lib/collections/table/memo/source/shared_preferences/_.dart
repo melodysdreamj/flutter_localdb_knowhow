@@ -14,12 +14,12 @@ class MemoSharedPreferences {
     return Memo.fromString(json);
   }
 
-  Future<void> upsert(Memo newObject) async {
+  Future<void> upsert(Memo obj) async {
     await _ready();
 
-    String json = newObject.toString();
+    String json = obj.toString();
 
-    await prefs.setString(newObject.DocId, json);
+    await prefs.setString(obj.DocId, json);
   }
 
   //////////////////////////////////////

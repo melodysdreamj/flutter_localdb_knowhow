@@ -1,12 +1,13 @@
 import 'dart:io';
+import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 import '../../class.dart';
+import 'util/managing_table.dart';
 
 class MemoSqflite {
-
   Future<Memo?> get(String docId) async {
     await _ready();
     List<Map> maps = await MemoDb.query('Memo',
@@ -84,13 +85,13 @@ class MemoSqflite {
         await MemoDb.rawQuery('SELECT COUNT(*) FROM Memo'));
   }
 
-  Future<void> upsert(Memo obj) async {
-    var oldObject = await get(obj.DocId);
+  Future<void> upsert(Memo newObject) async {
+    var oldObject = await get(newObject.DocId);
 
     if (oldObject != null) {
-      await update(obj, oldObject);
+      await update(newObject, oldObject);
     } else {
-      await insert(obj);
+      await insert(newObject);
     }
   }
 
@@ -109,17 +110,13 @@ class MemoSqflite {
   Future<int> insert(Memo object) async {
     await _ready();
 
-
-
     return await MemoDb.insert('Memo', toMap(object: object));
   }
 
   Future<int> update(Memo object, Memo oldObject) async {
     await _ready();
 
-
-    return await MemoDb.update(
-        'Memo', toMap(object: object),
+    return await MemoDb.update('Memo', toMap(object: oldObject),
         where: 'DocId = ?', whereArgs: [oldObject.DocId]);
   }
 
@@ -1187,7 +1184,98 @@ class MemoSqflite {
               ')');
     });
 
+    await _handleColumnChanged();
+
     await createIndexing(MemoDb);
+  }
+
+  _handleColumnChanged() async {
+    var _ = ManagingSqfliteTableMemo().get();
+
+    var columns = paramListNewTable.map((e) => e[0].toString()).toList();
+    if (_.UpdateMillis == 0) {
+      // 만약 한번도 작동한 적이 없다면 바로 컬럼에 넣어줍니다.
+      _.Version = 1;
+      _.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
+      _.Columns = columns;
+      ManagingSqfliteTableMemo().upsert(_);
+    }
+
+    // 기존 컬럼과의 비교를 해줍니다. (없어진건 삭제하고 새로나온건 추가하는식으로 가자)
+    // 기존꺼에만 있는 파라미터 리스트(즉 삭제해야하는 부분)
+    var needDeleteParams =
+        _.Columns.where((item) => !columns.contains(item)).toList();
+
+    // 새로운거에만 있는 파라미터 리스트(즉 추가해야하는 부분)
+    var needCreateParams =
+        columns.where((item) => !_.Columns.contains(item)).toList();
+
+    // needDeleteParams 와 needCreateParams 중 하나라도 변경사항이 있다면 디비버전업데이트해주기
+    if (needDeleteParams.isNotEmpty || needCreateParams.isNotEmpty) {
+      _.Version++;
+      _.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
+      ManagingSqfliteTableMemo().upsert(_);
+    }
+
+    // 추가해야하는 부분을 진행해줍니다.
+    for (var item in needCreateParams) {
+      var param = paramListNewTable.firstWhere((element) => element[0] == item);
+      await _addColumns(param[0], param[1]);
+    }
+
+    // 삭제해야하는 부분을 진행해줍니다.
+    await _removeColumns(needDeleteParams);
+
+    await _prepare();
+  }
+
+  _addColumns(String newColumnName, String columnType) async {
+    String defaultValue = '';
+    if (columnType == 'integer') {
+      defaultValue = "0";
+    } else if (columnType == 'string') {
+      defaultValue = "''";
+    } else if (columnType == 'real') {
+      defaultValue = "0";
+    } else if (columnType == 'boolean') {
+      defaultValue = "0";
+    } else if (columnType == 'list') {
+      defaultValue = "'[]'";
+    } else if (columnType == 'classes') {
+      defaultValue = "'[]'";
+    }
+    await MemoDb.execute(
+        "ALTER TABLE NewTable ADD COLUMN $newColumnName $columnType DEFAULT $defaultValue");
+  }
+
+  _removeColumns(List<String> columnsToDelete) async {
+    // 임시 테이블 이름 생성
+    String tempTableName = 'temp_NewTable';
+
+    // 기존 테이블의 모든 컬럼 정보 가져오기
+    List<Map> columns =
+        await MemoDb.rawQuery('PRAGMA table_info(NewTable)');
+    List<String> allColumnNames =
+        columns.map((col) => col['name'] as String).toList();
+
+    // 삭제하려는 컬럼 제외
+    allColumnNames.removeWhere((element) => columnsToDelete.contains(element));
+    String remainingColumns = allColumnNames.join(', ');
+
+    // 새로운 임시 테이블 생성과 데이터 복사
+    await MemoDb.transaction((txn) async {
+      await txn.execute('''
+      CREATE TABLE $tempTableName AS 
+      SELECT $remainingColumns 
+      FROM NewTable
+    ''');
+
+      // 기존 테이블 삭제
+      await txn.execute('DROP TABLE NewTable');
+
+      // 임시 테이블의 이름을 원래 테이블 이름으로 변경
+      await txn.execute('ALTER TABLE $tempTableName RENAME TO NewTable');
+    });
   }
 
   _prepare() async {
@@ -1195,18 +1283,18 @@ class MemoSqflite {
     final databasePath = await getDatabasesPath();
     final path = join(databasePath, _dbName);
     await Directory(dirname(path)).create(recursive: true);
-    MemoDb = await openDatabase(path, version: 1);
+    MemoDb = await openDatabase(path,
+        version: ManagingSqfliteTableMemo().get().Version);
     _isDbOpened = true;
   }
 
   /// sql 인덱싱 해주기(필요한 부분에 인덱스를 추가해줍니다.), 오름차순 내림차순, 및 복합 쿼리같은경우 모두 설정해주면 됩니다.
   createIndexing(Database myDatabase) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    if (prefs.getBool("MemoIndex") != null) {
+    final box = GetStorage();
+    if (box.read("MemoSqfliteIndex") != null) {
       return;
     }
-    await prefs.setBool("MemoIndex", true);
+    box.write("MemoSqfliteIndex", true);
 
     /// 예시
     // await myDatabase.execute("create index I000index on Memo (I000)"); // 단일 인덱싱

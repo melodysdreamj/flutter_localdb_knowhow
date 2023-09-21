@@ -1,15 +1,36 @@
 import 'dart:convert';
 
-import 'config.dart';
+import 'package:get_storage/get_storage.dart';
 
-class Memo {
-  Memo() {
-    DocId = MemoConfig.to.generateDocId();
+class ManagingSqfliteTableMemo {
+
+  SqfliteTableMemo get() {
+    final box = GetStorage();
+
+    String? json = box.read('ManagingSqfliteTableMemo');
+    if (json == null) return SqfliteTableMemo();
+
+    return SqfliteTableMemo.fromString(json);
   }
 
-  int I000 = 0;
+  upsert(SqfliteTableMemo obj) {
+    final box = GetStorage();
+    String json = obj.toString();
+    box.write('ManagingSqfliteTableMemo', json);
+  }
 
-  // int I001 = 0;
+  delete() {
+    final box = GetStorage();
+    box.remove('ManagingSqfliteTableMemo');
+  }
+}
+
+
+class SqfliteTableMemo {
+
+  int UpdateMillis = 0;
+
+  int Version = 0;
   // int I002 = 0;
   // int I003 = 0;
   // int I004 = 0;
@@ -274,7 +295,7 @@ class Memo {
   // num R029 = 0;
   // num R030 = 0;
   //
-  // List<String> L000 = [];
+  List<String> Columns = [];
   // List<String> L001 = [];
   // List<String> L002 = [];
   // List<String> L003 = [];
@@ -295,7 +316,6 @@ class Memo {
   // List<String> L018 = [];
   // List<String> L019 = [];
   // List<String> L020 = [];
-  //
   // List<Memo2> J000 = [];
   // List<Memo2> J001 = [];
   // List<Memo2> J002 = [];
@@ -318,13 +338,12 @@ class Memo {
   // List<Memo2> J019 = [];
   // List<Memo2> J020 = [];
 
-  String DocId = "";
 
   @override
   String toString() {
     return jsonEncode({
-      'I000': I000,
-      // 'I001': I001,
+      'UpdateMillis': UpdateMillis,
+      'Version': Version,
       // 'I002': I002,
       // 'I003': I003,
       // 'I004': I004,
@@ -585,7 +604,7 @@ class Memo {
       // 'R028': R028,
       // 'R029': R029,
       // 'R030': R030,
-      // 'L000': L000,
+      'Columns': Columns,
       // 'L001': L001,
       // 'L002': L002,
       // 'L003': L003,
@@ -606,7 +625,6 @@ class Memo {
       // 'L018': L018,
       // 'L019': L019,
       // 'L020': L020,
-      // 'J000': J000,
       // 'J000': jsonEncode(J000.map((model) => model.toString()).toList()),
       // 'J001': jsonEncode(J001.map((model) => model.toString()).toList()),
       // 'J002': jsonEncode(J002.map((model) => model.toString()).toList()),
@@ -628,17 +646,16 @@ class Memo {
       // 'J018': jsonEncode(J018.map((model) => model.toString()).toList()),
       // 'J019': jsonEncode(J019.map((model) => model.toString()).toList()),
       // 'J020': jsonEncode(J020.map((model) => model.toString()).toList()),
-      'DocId': DocId,
     });
   }
 
   // JSON 문자열을 이용하여 Person 객체를 생성
-  static Memo fromString(String jsonString) {
+  static SqfliteTableMemo fromString(String jsonString) {
     final data = jsonDecode(jsonString);
-    var obj = Memo();
+    var obj = SqfliteTableMemo();
 
-    obj.I000 = data['I000'] ?? 0;
-    // obj.I001 = data['I001'] ?? 0;
+    obj.UpdateMillis = data['UpdateMillis'] ?? 0;
+    obj.Version = data['Version'] ?? 0;
     // obj.I002 = data['I002'] ?? 0;
     // obj.I003 = data['I003'] ?? 0;
     // obj.I004 = data['I004'] ?? 0;
@@ -899,7 +916,7 @@ class Memo {
     // obj.R028 = data['R028'] ?? 0;
     // obj.R029 = data['R029'] ?? 0;
     // obj.R030 = data['R030'] ?? 0;
-    // obj.L000 = data['L000'] ?? [];
+    obj.Columns = data['Columns'] ?? [];
     // obj.L001 = data['L001'] ?? [];
     // obj.L002 = data['L002'] ?? [];
     // obj.L003 = data['L003'] ?? [];
@@ -942,316 +959,6 @@ class Memo {
     // obj.J019 = (jsonDecode(data['J019'] ?? '[]') as List).map((item) => Memo2.fromString(item)).toList();
     // obj.J020 = (jsonDecode(data['J020'] ?? '[]') as List).map((item) => Memo2.fromString(item)).toList();
 
-    obj.DocId = data['DocId'];
-
     return obj;
   }
 }
-
-const paramListNewTable = [
-  ["I000", "integer"],
-  ["I001", "integer"],
-  ["I002", "integer"],
-  ["I003", "integer"],
-  ["I004", "integer"],
-  ["I005", "integer"],
-  ["I006", "integer"],
-  ["I007", "integer"],
-  ["I008", "integer"],
-  ["I009", "integer"],
-  ["I010", "integer"],
-  ["I011", "integer"],
-  ["I012", "integer"],
-  ["I013", "integer"],
-  ["I014", "integer"],
-  ["I015", "integer"],
-  ["I016", "integer"],
-  ["I017", "integer"],
-  ["I018", "integer"],
-  ["I019", "integer"],
-  ["I020", "integer"],
-  ["I021", "integer"],
-  ["I022", "integer"],
-  ["I023", "integer"],
-  ["I024", "integer"],
-  ["I025", "integer"],
-  ["I026", "integer"],
-  ["I027", "integer"],
-  ["I028", "integer"],
-  ["I029", "integer"],
-  ["I030", "integer"],
-  ["I031", "integer"],
-  ["I032", "integer"],
-  ["I033", "integer"],
-  ["I034", "integer"],
-  ["I035", "integer"],
-  ["I036", "integer"],
-  ["I037", "integer"],
-  ["I038", "integer"],
-  ["I039", "integer"],
-  ["I040", "integer"],
-  ["I041", "integer"],
-  ["I042", "integer"],
-  ["I043", "integer"],
-  ["I044", "integer"],
-  ["I045", "integer"],
-  ["I046", "integer"],
-  ["I047", "integer"],
-  ["I048", "integer"],
-  ["I049", "integer"],
-  ["I050", "integer"],
-  ["I051", "integer"],
-  ["I052", "integer"],
-  ["I053", "integer"],
-  ["I054", "integer"],
-  ["I055", "integer"],
-  ["I056", "integer"],
-  ["I057", "integer"],
-  ["I058", "integer"],
-  ["I059", "integer"],
-  ["I060", "integer"],
-  ["I061", "integer"],
-  ["I062", "integer"],
-  ["I063", "integer"],
-  ["I064", "integer"],
-  ["I065", "integer"],
-  ["I066", "integer"],
-  ["I067", "integer"],
-  ["I068", "integer"],
-  ["I069", "integer"],
-  ["I070", "integer"],
-  ["I071", "integer"],
-  ["I072", "integer"],
-  ["I073", "integer"],
-  ["I074", "integer"],
-  ["I075", "integer"],
-  ["I076", "integer"],
-  ["I077", "integer"],
-  ["I078", "integer"],
-  ["I079", "integer"],
-  ["I080", "integer"],
-  ["I081", "integer"],
-  ["I082", "integer"],
-  ["I083", "integer"],
-  ["I084", "integer"],
-  ["I085", "integer"],
-  ["I086", "integer"],
-  ["I087", "integer"],
-  ["I088", "integer"],
-  ["I089", "integer"],
-  ["I090", "integer"],
-  ["I091", "integer"],
-  ["I092", "integer"],
-  ["I093", "integer"],
-  ["I094", "integer"],
-  ["I095", "integer"],
-  ["I096", "integer"],
-  ["I097", "integer"],
-  ["I098", "integer"],
-  ["I099", "integer"],
-  ["S000", "string"],
-  ["S001", "string"],
-  ["S002", "string"],
-  ["S003", "string"],
-  ["S004", "string"],
-  ["S005", "string"],
-  ["S006", "string"],
-  ["S007", "string"],
-  ["S008", "string"],
-  ["S009", "string"],
-  ["S010", "string"],
-  ["S011", "string"],
-  ["S012", "string"],
-  ["S013", "string"],
-  ["S014", "string"],
-  ["S015", "string"],
-  ["S016", "string"],
-  ["S017", "string"],
-  ["S018", "string"],
-  ["S019", "string"],
-  ["S020", "string"],
-  ["S021", "string"],
-  ["S022", "string"],
-  ["S023", "string"],
-  ["S024", "string"],
-  ["S025", "string"],
-  ["S026", "string"],
-  ["S027", "string"],
-  ["S028", "string"],
-  ["S029", "string"],
-  ["S030", "string"],
-  ["S031", "string"],
-  ["S032", "string"],
-  ["S033", "string"],
-  ["S034", "string"],
-  ["S035", "string"],
-  ["S036", "string"],
-  ["S037", "string"],
-  ["S038", "string"],
-  ["S039", "string"],
-  ["S040", "string"],
-  ["S041", "string"],
-  ["S042", "string"],
-  ["S043", "string"],
-  ["S044", "string"],
-  ["S045", "string"],
-  ["S046", "string"],
-  ["S047", "string"],
-  ["S048", "string"],
-  ["S049", "string"],
-  ["S050", "string"],
-  ["S051", "string"],
-  ["S052", "string"],
-  ["S053", "string"],
-  ["S054", "string"],
-  ["S055", "string"],
-  ["S056", "string"],
-  ["S057", "string"],
-  ["S058", "string"],
-  ["S059", "string"],
-  ["S060", "string"],
-  ["S061", "string"],
-  ["S062", "string"],
-  ["S063", "string"],
-  ["S064", "string"],
-  ["S065", "string"],
-  ["S066", "string"],
-  ["S067", "string"],
-  ["S068", "string"],
-  ["S069", "string"],
-  ["S070", "string"],
-  ["S071", "string"],
-  ["S072", "string"],
-  ["S073", "string"],
-  ["S074", "string"],
-  ["S075", "string"],
-  ["S076", "string"],
-  ["S077", "string"],
-  ["S078", "string"],
-  ["S079", "string"],
-  ["S080", "string"],
-  ["S081", "string"],
-  ["S082", "string"],
-  ["S083", "string"],
-  ["S084", "string"],
-  ["S085", "string"],
-  ["S086", "string"],
-  ["S087", "string"],
-  ["S088", "string"],
-  ["S089", "string"],
-  ["S090", "string"],
-  ["S091", "string"],
-  ["S092", "string"],
-  ["S093", "string"],
-  ["S094", "string"],
-  ["S095", "string"],
-  ["S096", "string"],
-  ["S097", "string"],
-  ["S098", "string"],
-  ["S099", "string"],
-  ["B000", "boolean"],
-  ["B001", "boolean"],
-  ["B002", "boolean"],
-  ["B003", "boolean"],
-  ["B004", "boolean"],
-  ["B005", "boolean"],
-  ["B006", "boolean"],
-  ["B007", "boolean"],
-  ["B008", "boolean"],
-  ["B009", "boolean"],
-  ["B010", "boolean"],
-  ["B011", "boolean"],
-  ["B012", "boolean"],
-  ["B013", "boolean"],
-  ["B014", "boolean"],
-  ["B015", "boolean"],
-  ["B016", "boolean"],
-  ["B017", "boolean"],
-  ["B018", "boolean"],
-  ["B019", "boolean"],
-  ["B020", "boolean"],
-  ["B021", "boolean"],
-  ["B022", "boolean"],
-  ["B023", "boolean"],
-  ["B024", "boolean"],
-  ["B025", "boolean"],
-  ["B026", "boolean"],
-  ["B027", "boolean"],
-  ["B028", "boolean"],
-  ["B029", "boolean"],
-  ["B030", "boolean"],
-  ["R000", "real"],
-  ["R001", "real"],
-  ["R002", "real"],
-  ["R003", "real"],
-  ["R004", "real"],
-  ["R005", "real"],
-  ["R006", "real"],
-  ["R007", "real"],
-  ["R008", "real"],
-  ["R009", "real"],
-  ["R010", "real"],
-  ["R011", "real"],
-  ["R012", "real"],
-  ["R013", "real"],
-  ["R014", "real"],
-  ["R015", "real"],
-  ["R016", "real"],
-  ["R017", "real"],
-  ["R018", "real"],
-  ["R019", "real"],
-  ["R020", "real"],
-  ["R021", "real"],
-  ["R022", "real"],
-  ["R023", "real"],
-  ["R024", "real"],
-  ["R025", "real"],
-  ["R026", "real"],
-  ["R027", "real"],
-  ["R028", "real"],
-  ["R029", "real"],
-  ["R030", "real"],
-  ["L000", "list"],
-  ["L001", "list"],
-  ["L002", "list"],
-  ["L003", "list"],
-  ["L004", "list"],
-  ["L005", "list"],
-  ["L006", "list"],
-  ["L007", "list"],
-  ["L008", "list"],
-  ["L009", "list"],
-  ["L010", "list"],
-  ["L011", "list"],
-  ["L012", "list"],
-  ["L013", "list"],
-  ["L014", "list"],
-  ["L015", "list"],
-  ["L016", "list"],
-  ["L017", "list"],
-  ["L018", "list"],
-  ["L019", "list"],
-  ["L020", "list"],
-  ["J000", "list"],
-  ["J001", "classes"],
-  ["J002", "classes"],
-  ["J003", "classes"],
-  ["J004", "classes"],
-  ["J005", "classes"],
-  ["J006", "classes"],
-  ["J007", "classes"],
-  ["J008", "classes"],
-  ["J009", "classes"],
-  ["J010", "classes"],
-  ["J011", "classes"],
-  ["J012", "classes"],
-  ["J013", "classes"],
-  ["J014", "classes"],
-  ["J015", "classes"],
-  ["J016", "classes"],
-  ["J017", "classes"],
-  ["J018", "classes"],
-  ["J019", "classes"],
-  ["J020", "classes"],
-  ["DocId", "string"]
-];

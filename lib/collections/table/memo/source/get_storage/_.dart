@@ -14,10 +14,10 @@ class MemoGetStorage {
     return Memo.fromString(json);
   }
 
-  upsert(Memo newObject) {
+  upsert(Memo obj) {
     final box = GetStorage();
-    String json = newObject.toString();
-    box.write(newObject.DocId, json);
+    String json = obj.toString();
+    box.write(obj.DocId, json);
   }
 
   delete(String docId) {
