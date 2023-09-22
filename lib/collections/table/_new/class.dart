@@ -606,7 +606,6 @@ class NewModel {
       // 'L018': L018,
       // 'L019': L019,
       // 'L020': L020,
-      // 'J000': J000,
       // 'J000': jsonEncode(J000.map((model) => model.toString()).toList()),
       // 'J001': jsonEncode(J001.map((model) => model.toString()).toList()),
       // 'J002': jsonEncode(J002.map((model) => model.toString()).toList()),

@@ -22,6 +22,12 @@ class NewModelFlutterSecureStorage {
     await storage.write(key: obj.DocId, value: json);
   }
 
+  Future<void> delete(String docId) async {
+    await _ready();
+
+    await storage.delete(key: docId);
+  }
+
 
   //////////////
   static bool _isOpened = false;

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -119,6 +120,7 @@ class NewModelSqflite {
     return await NewModelDb.update('NewModel', toMap(object: object),
         where: 'DocId = ?', whereArgs: [oldObject.DocId]);
   }
+
 
   ///////////////////////////////////////
   Map<String, Object?> toMap({required NewModel object, String? inputId}) {
@@ -386,48 +388,48 @@ class NewModelSqflite {
     // map["R028"] = object.R028;
     // map["R029"] = object.R029;
     // map["R030"] = object.R030;
-    // map["L000"] = MyConvertSpell().listToString(object.L000);
-    // map["L001"] = MyConvertSpell().listToString(object.L001);
-    // map["L002"] = MyConvertSpell().listToString(object.L002);
-    // map["L003"] = MyConvertSpell().listToString(object.L003);
-    // map["L004"] = MyConvertSpell().listToString(object.L004);
-    // map["L005"] = MyConvertSpell().listToString(object.L005);
-    // map["L006"] = MyConvertSpell().listToString(object.L006);
-    // map["L007"] = MyConvertSpell().listToString(object.L007);
-    // map["L008"] = MyConvertSpell().listToString(object.L008);
-    // map["L009"] = MyConvertSpell().listToString(object.L009);
-    // map["L010"] = MyConvertSpell().listToString(object.L010);
-    // map["L011"] = MyConvertSpell().listToString(object.L011);
-    // map["L012"] = MyConvertSpell().listToString(object.L012);
-    // map["L013"] = MyConvertSpell().listToString(object.L013);
-    // map["L014"] = MyConvertSpell().listToString(object.L014);
-    // map["L015"] = MyConvertSpell().listToString(object.L015);
-    // map["L016"] = MyConvertSpell().listToString(object.L016);
-    // map["L017"] = MyConvertSpell().listToString(object.L017);
-    // map["L018"] = MyConvertSpell().listToString(object.L018);
-    // map["L019"] = MyConvertSpell().listToString(object.L019);
-    // map["L020"] = MyConvertSpell().listToString(object.L020);
-    // map["M000"] = MyConvertSpell().mapToString(object.M000);
-    // map["M001"] = MyConvertSpell().mapToString(object.M001);
-    // map["M002"] = MyConvertSpell().mapToString(object.M002);
-    // map["M003"] = MyConvertSpell().mapToString(object.M003);
-    // map["M004"] = MyConvertSpell().mapToString(object.M004);
-    // map["M005"] = MyConvertSpell().mapToString(object.M005);
-    // map["M006"] = MyConvertSpell().mapToString(object.M006);
-    // map["M007"] = MyConvertSpell().mapToString(object.M007);
-    // map["M008"] = MyConvertSpell().mapToString(object.M008);
-    // map["M009"] = MyConvertSpell().mapToString(object.M009);
-    // map["M010"] = MyConvertSpell().mapToString(object.M010);
-    // map["M011"] = MyConvertSpell().mapToString(object.M011);
-    // map["M012"] = MyConvertSpell().mapToString(object.M012);
-    // map["M013"] = MyConvertSpell().mapToString(object.M013);
-    // map["M014"] = MyConvertSpell().mapToString(object.M014);
-    // map["M015"] = MyConvertSpell().mapToString(object.M015);
-    // map["M016"] = MyConvertSpell().mapToString(object.M016);
-    // map["M017"] = MyConvertSpell().mapToString(object.M017);
-    // map["M018"] = MyConvertSpell().mapToString(object.M018);
-    // map["M019"] = MyConvertSpell().mapToString(object.M019);
-    // map["M020"] = MyConvertSpell().mapToString(object.M020);
+    // map["L000"] = jsonEncode(object.L000);
+    // map["L001"] = jsonEncode(object.L001);
+    // map["L002"] = jsonEncode(object.L002);
+    // map["L003"] = jsonEncode(object.L003);
+    // map["L004"] = jsonEncode(object.L004);
+    // map["L005"] = jsonEncode(object.L005);
+    // map["L006"] = jsonEncode(object.L006);
+    // map["L007"] = jsonEncode(object.L007);
+    // map["L008"] = jsonEncode(object.L008);
+    // map["L009"] = jsonEncode(object.L009);
+    // map["L010"] = jsonEncode(object.L010);
+    // map["L011"] = jsonEncode(object.L011);
+    // map["L012"] = jsonEncode(object.L012);
+    // map["L013"] = jsonEncode(object.L013);
+    // map["L014"] = jsonEncode(object.L014);
+    // map["L015"] = jsonEncode(object.L015);
+    // map["L016"] = jsonEncode(object.L016);
+    // map["L017"] = jsonEncode(object.L017);
+    // map["L018"] = jsonEncode(object.L018);
+    // map["L019"] = jsonEncode(object.L019);
+    // map["L020"] = jsonEncode(object.L020);
+    // map["J000"] = jsonEncode(object.J000.map((model) => model.toString()).toList());
+    // map["J001"] = jsonEncode(object.J001.map((model) => model.toString()).toList());
+    // map["J002"] = jsonEncode(object.J002.map((model) => model.toString()).toList());
+    // map["J003"] = jsonEncode(object.J003.map((model) => model.toString()).toList());
+    // map["J004"] = jsonEncode(object.J004.map((model) => model.toString()).toList());
+    // map["J005"] = jsonEncode(object.J005.map((model) => model.toString()).toList());
+    // map["J006"] = jsonEncode(object.J006.map((model) => model.toString()).toList());
+    // map["J007"] = jsonEncode(object.J007.map((model) => model.toString()).toList());
+    // map["J008"] = jsonEncode(object.J008.map((model) => model.toString()).toList());
+    // map["J009"] = jsonEncode(object.J009.map((model) => model.toString()).toList());
+    // map["J010"] = jsonEncode(object.J010.map((model) => model.toString()).toList());
+    // map["J011"] = jsonEncode(object.J011.map((model) => model.toString()).toList());
+    // map["J012"] = jsonEncode(object.J012.map((model) => model.toString()).toList());
+    // map["J013"] = jsonEncode(object.J013.map((model) => model.toString()).toList());
+    // map["J014"] = jsonEncode(object.J014.map((model) => model.toString()).toList());
+    // map["J015"] = jsonEncode(object.J015.map((model) => model.toString()).toList());
+    // map["J016"] = jsonEncode(object.J016.map((model) => model.toString()).toList());
+    // map["J017"] = jsonEncode(object.J017.map((model) => model.toString()).toList());
+    // map["J018"] = jsonEncode(object.J018.map((model) => model.toString()).toList());
+    // map["J019"] = jsonEncode(object.J019.map((model) => model.toString()).toList());
+    // map["J020"] = jsonEncode(object.J020.map((model) => model.toString()).toList());
 
     if (inputId != null) {
       map["DocId"] = inputId;
@@ -702,48 +704,48 @@ class NewModelSqflite {
     // object.R028 = map["R028"] ?? 0;
     // object.R029 = map["R029"] ?? 0;
     // object.R030 = map["R030"] ?? 0;
-    // object.L000 = MyConvertSpell().stringToList(map["L000"] ?? "[]");
-    // object.L001 = MyConvertSpell().stringToList(map["L001"] ?? "[]");
-    // object.L002 = MyConvertSpell().stringToList(map["L002"] ?? "[]");
-    // object.L003 = MyConvertSpell().stringToList(map["L003"] ?? "[]");
-    // object.L004 = MyConvertSpell().stringToList(map["L004"] ?? "[]");
-    // object.L005 = MyConvertSpell().stringToList(map["L005"] ?? "[]");
-    // object.L006 = MyConvertSpell().stringToList(map["L006"] ?? "[]");
-    // object.L007 = MyConvertSpell().stringToList(map["L007"] ?? "[]");
-    // object.L008 = MyConvertSpell().stringToList(map["L008"] ?? "[]");
-    // object.L009 = MyConvertSpell().stringToList(map["L009"] ?? "[]");
-    // object.L010 = MyConvertSpell().stringToList(map["L010"] ?? "[]");
-    // object.L011 = MyConvertSpell().stringToList(map["L011"] ?? "[]");
-    // object.L012 = MyConvertSpell().stringToList(map["L012"] ?? "[]");
-    // object.L013 = MyConvertSpell().stringToList(map["L013"] ?? "[]");
-    // object.L014 = MyConvertSpell().stringToList(map["L014"] ?? "[]");
-    // object.L015 = MyConvertSpell().stringToList(map["L015"] ?? "[]");
-    // object.L016 = MyConvertSpell().stringToList(map["L016"] ?? "[]");
-    // object.L017 = MyConvertSpell().stringToList(map["L017"] ?? "[]");
-    // object.L018 = MyConvertSpell().stringToList(map["L018"] ?? "[]");
-    // object.L019 = MyConvertSpell().stringToList(map["L019"] ?? "[]");
-    // object.L020 = MyConvertSpell().stringToList(map["L020"] ?? "[]");
-    // object.M000 = MyConvertSpell().stringToMap(map["M000"] ?? "{}");
-    // object.M001 = MyConvertSpell().stringToMap(map["M001"] ?? "{}");
-    // object.M002 = MyConvertSpell().stringToMap(map["M002"] ?? "{}");
-    // object.M003 = MyConvertSpell().stringToMap(map["M003"] ?? "{}");
-    // object.M004 = MyConvertSpell().stringToMap(map["M004"] ?? "{}");
-    // object.M005 = MyConvertSpell().stringToMap(map["M005"] ?? "{}");
-    // object.M006 = MyConvertSpell().stringToMap(map["M006"] ?? "{}");
-    // object.M007 = MyConvertSpell().stringToMap(map["M007"] ?? "{}");
-    // object.M008 = MyConvertSpell().stringToMap(map["M008"] ?? "{}");
-    // object.M009 = MyConvertSpell().stringToMap(map["M009"] ?? "{}");
-    // object.M010 = MyConvertSpell().stringToMap(map["M010"] ?? "{}");
-    // object.M011 = MyConvertSpell().stringToMap(map["M011"] ?? "{}");
-    // object.M012 = MyConvertSpell().stringToMap(map["M012"] ?? "{}");
-    // object.M013 = MyConvertSpell().stringToMap(map["M013"] ?? "{}");
-    // object.M014 = MyConvertSpell().stringToMap(map["M014"] ?? "{}");
-    // object.M015 = MyConvertSpell().stringToMap(map["M015"] ?? "{}");
-    // object.M016 = MyConvertSpell().stringToMap(map["M016"] ?? "{}");
-    // object.M017 = MyConvertSpell().stringToMap(map["M017"] ?? "{}");
-    // object.M018 = MyConvertSpell().stringToMap(map["M018"] ?? "{}");
-    // object.M019 = MyConvertSpell().stringToMap(map["M019"] ?? "{}");
-    // object.M020 = MyConvertSpell().stringToMap(map["M020"] ?? "{}");
+    // object.L000 = jsonDecode(map["L000"] ?? "[]");
+    // object.L001 = jsonDecode(map["L001"] ?? "[]");
+    // object.L002 = jsonDecode(map["L002"] ?? "[]");
+    // object.L003 = jsonDecode(map["L003"] ?? "[]");
+    // object.L004 = jsonDecode(map["L004"] ?? "[]");
+    // object.L005 = jsonDecode(map["L005"] ?? "[]");
+    // object.L006 = jsonDecode(map["L006"] ?? "[]");
+    // object.L007 = jsonDecode(map["L007"] ?? "[]");
+    // object.L008 = jsonDecode(map["L008"] ?? "[]");
+    // object.L009 = jsonDecode(map["L009"] ?? "[]");
+    // object.L010 = jsonDecode(map["L010"] ?? "[]");
+    // object.L011 = jsonDecode(map["L011"] ?? "[]");
+    // object.L012 = jsonDecode(map["L012"] ?? "[]");
+    // object.L013 = jsonDecode(map["L013"] ?? "[]");
+    // object.L014 = jsonDecode(map["L014"] ?? "[]");
+    // object.L015 = jsonDecode(map["L015"] ?? "[]");
+    // object.L016 = jsonDecode(map["L016"] ?? "[]");
+    // object.L017 = jsonDecode(map["L017"] ?? "[]");
+    // object.L018 = jsonDecode(map["L018"] ?? "[]");
+    // object.L019 = jsonDecode(map["L019"] ?? "[]");
+    // object.L020 = jsonDecode(map["L020"] ?? "[]");
+    // object.J000 = (jsonDecode(map["J000"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J001 = (jsonDecode(map["J001"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J002 = (jsonDecode(map["J002"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J003 = (jsonDecode(map["J003"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J004 = (jsonDecode(map["J004"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J005 = (jsonDecode(map["J005"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J006 = (jsonDecode(map["J006"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J007 = (jsonDecode(map["J007"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J008 = (jsonDecode(map["J008"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J009 = (jsonDecode(map["J009"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J010 = (jsonDecode(map["J010"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J011 = (jsonDecode(map["J011"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J012 = (jsonDecode(map["J012"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J013 = (jsonDecode(map["J013"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J014 = (jsonDecode(map["J014"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J015 = (jsonDecode(map["J015"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J016 = (jsonDecode(map["J016"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J017 = (jsonDecode(map["J017"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J018 = (jsonDecode(map["J018"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J019 = (jsonDecode(map["J019"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
+    // object.J020 = (jsonDecode(map["J020"] ?? "[]") as List).map((item) => NewModel2.fromString(item)).toList();
 
     if (map["DocId"] != null) {
       object.DocId = map["DocId"];
@@ -1056,132 +1058,28 @@ class NewModelSqflite {
           // ",L018 text not null"
           // ",L019 text not null"
           // ",L020 text not null"
-          // ",M000 text not null"
-          // ",M001 text not null"
-          // ",M002 text not null"
-          // ",M003 text not null"
-          // ",M004 text not null"
-          // ",M005 text not null"
-          // ",M006 text not null"
-          // ",M007 text not null"
-          // ",M008 text not null"
-          // ",M009 text not null"
-          // ",M010 text not null"
-          // ",M011 text not null"
-          // ",M012 text not null"
-          // ",M013 text not null"
-          // ",M014 text not null"
-          // ",M015 text not null"
-          // ",M016 text not null"
-          // ",M017 text not null"
-          // ",M018 text not null"
-          // ",M019 text not null"
-          // ",M020 text not null"
+          // ",J000 text not null"
+          // ",J001 text not null"
+          // ",J002 text not null"
+          // ",J003 text not null"
+          // ",J004 text not null"
+          // ",J005 text not null"
+          // ",J006 text not null"
+          // ",J007 text not null"
+          // ",J008 text not null"
+          // ",J009 text not null"
+          // ",J010 text not null"
+          // ",J011 text not null"
+          // ",J012 text not null"
+          // ",J013 text not null"
+          // ",J014 text not null"
+          // ",J015 text not null"
+          // ",J016 text not null"
+          // ",J017 text not null"
+          // ",J018 text not null"
+          // ",J019 text not null"
+          // ",J020 text not null"
           ")");
-
-      await txn
-          .execute('CREATE VIRTUAL TABLE if not exists NewModelFTS4 USING FTS4('
-              // 'S000'
-              // ',S001'
-              // ',S002'
-              // ',S003'
-              // ',S004'
-              // ',S005'
-              // ',S006'
-              // ',S007'
-              // ',S008'
-              // ',S009'
-              // ',S010'
-              // ',S011'
-              // ',S012'
-              // ',S013'
-              // ',S014'
-              // ',S015'
-              // ',S016'
-              // ',S017'
-              // ',S018'
-              // ',S019'
-              // ',S020'
-              // ',S021'
-              // ',S022'
-              // ',S023'
-              // ',S024'
-              // ',S025'
-              // ',S026'
-              // ',S027'
-              // ',S028'
-              // ',S029'
-              // ',S030'
-              // ',S031'
-              // ',S032'
-              // ',S033'
-              // ',S034'
-              // ',S035'
-              // ',S036'
-              // ',S037'
-              // ',S038'
-              // ',S039'
-              // ',S040'
-              // ',S041'
-              // ',S042'
-              // ',S043'
-              // ',S044'
-              // ',S045'
-              // ',S046'
-              // ',S047'
-              // ',S048'
-              // ',S049'
-              // ',S050'
-              // ',S051'
-              // ',S052'
-              // ',S053'
-              // ',S054'
-              // ',S055'
-              // ',S056'
-              // ',S057'
-              // ',S058'
-              // ',S059'
-              // ',S060'
-              // ',S061'
-              // ',S062'
-              // ',S063'
-              // ',S064'
-              // ',S065'
-              // ',S066'
-              // ',S067'
-              // ',S068'
-              // ',S069'
-              // ',S070'
-              // ',S071'
-              // ',S072'
-              // ',S073'
-              // ',S074'
-              // ',S075'
-              // ',S076'
-              // ',S077'
-              // ',S078'
-              // ',S079'
-              // ',S080'
-              // ',S081'
-              // ',S082'
-              // ',S083'
-              // ',S084'
-              // ',S085'
-              // ',S086'
-              // ',S087'
-              // ',S088'
-              // ',S089'
-              // ',S090'
-              // ',S091'
-              // ',S092'
-              // ',S093'
-              // ',S094'
-              // ',S095'
-              // ',S096'
-              // ',S097'
-              // ',S098'
-              // ',S099'
-              ')');
     });
 
     await _handleColumnChanged();

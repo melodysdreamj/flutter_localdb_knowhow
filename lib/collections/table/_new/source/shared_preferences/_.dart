@@ -22,6 +22,12 @@ class NewModelSharedPreferences {
     await prefs.setString(obj.DocId, json);
   }
 
+  Future<void> delete(String docId) async {
+    await _ready();
+
+    await prefs.remove(docId);
+  }
+
   //////////////////////////////////////
 
 

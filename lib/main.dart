@@ -90,197 +90,200 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  button04(BuildContext context) {}
+  button04(BuildContext context) async {
+     var _ = await MemoSqflite().getFts4Columns();
+     print(_);
+  }
 
-  button05(BuildContext context) {}
+  button05(BuildContext context) async {}
 
-  button06(BuildContext context) {}
+  button06(BuildContext context) async {}
 
-  button07(BuildContext context) {}
+  button07(BuildContext context) async {}
 
-  button08(BuildContext context) {}
+  button08(BuildContext context) async {}
 
-  button09(BuildContext context) {}
+  button09(BuildContext context) async {}
 
-  button10(BuildContext context) {}
+  button10(BuildContext context) async {}
 
-  button11(BuildContext context) {}
+  button11(BuildContext context) async {}
 
-  button12(BuildContext context) {}
+  button12(BuildContext context) async {}
 
-  button13(BuildContext context) {}
+  button13(BuildContext context) async {}
 
-  button14(BuildContext context) {}
+  button14(BuildContext context) async {}
 
-  button15(BuildContext context) {}
+  button15(BuildContext context) async {}
 
-  button16(BuildContext context) {}
+  button16(BuildContext context) async {}
 
-  button17(BuildContext context) {}
+  button17(BuildContext context) async {}
 
-  button18(BuildContext context) {}
+  button18(BuildContext context) async {}
 
-  button19(BuildContext context) {}
+  button19(BuildContext context) async {}
 
-  button20(BuildContext context) {}
+  button20(BuildContext context) async {}
 
-  button21(BuildContext context) {}
+  button21(BuildContext context) async {}
 
-  button22(BuildContext context) {}
+  button22(BuildContext context) async {}
 
-  button23(BuildContext context) {}
+  button23(BuildContext context) async {}
 
-  button24(BuildContext context) {}
+  button24(BuildContext context) async {}
 
-  button25(BuildContext context) {}
+  button25(BuildContext context) async {}
 
-  button26(BuildContext context) {}
+  button26(BuildContext context) async {}
 
-  button27(BuildContext context) {}
+  button27(BuildContext context) async {}
 
-  button28(BuildContext context) {}
+  button28(BuildContext context) async {}
 
-  button29(BuildContext context) {}
+  button29(BuildContext context) async {}
 
-  button30(BuildContext context) {}
+  button30(BuildContext context) async {}
 
-  button31(BuildContext context) {}
+  button31(BuildContext context) async {}
 
-  button32(BuildContext context) {}
+  button32(BuildContext context) async {}
 
-  button33(BuildContext context) {}
+  button33(BuildContext context) async {}
 
-  button34(BuildContext context) {}
+  button34(BuildContext context) async {}
 
-  button35(BuildContext context) {}
+  button35(BuildContext context) async {}
 
-  button36(BuildContext context) {}
+  button36(BuildContext context) async {}
 
-  button37(BuildContext context) {}
+  button37(BuildContext context) async {}
 
-  button38(BuildContext context) {}
+  button38(BuildContext context) async {}
 
-  button39(BuildContext context) {}
+  button39(BuildContext context) async {}
 
-  button40(BuildContext context) {}
+  button40(BuildContext context) async {}
 
-  button41(BuildContext context) {}
+  button41(BuildContext context) async {}
 
-  button42(BuildContext context) {}
+  button42(BuildContext context) async {}
 
-  button43(BuildContext context) {}
+  button43(BuildContext context) async {}
 
-  button44(BuildContext context) {}
+  button44(BuildContext context) async {}
 
-  button45(BuildContext context) {}
+  button45(BuildContext context) async {}
 
-  button46(BuildContext context) {}
+  button46(BuildContext context) async {}
 
-  button47(BuildContext context) {}
+  button47(BuildContext context) async {}
 
-  button48(BuildContext context) {}
+  button48(BuildContext context) async {}
 
-  button49(BuildContext context) {}
+  button49(BuildContext context) async {}
 
-  button50(BuildContext context) {}
+  button50(BuildContext context) async {}
 
-  button51(BuildContext context) {}
+  button51(BuildContext context) async {}
 
-  button52(BuildContext context) {}
+  button52(BuildContext context) async {}
 
-  button53(BuildContext context) {}
+  button53(BuildContext context) async {}
 
-  button54(BuildContext context) {}
+  button54(BuildContext context) async {}
 
-  button55(BuildContext context) {}
+  button55(BuildContext context) async {}
 
-  button56(BuildContext context) {}
+  button56(BuildContext context) async {}
 
-  button57(BuildContext context) {}
+  button57(BuildContext context) async {}
 
-  button58(BuildContext context) {}
+  button58(BuildContext context) async {}
 
-  button59(BuildContext context) {}
+  button59(BuildContext context) async {}
 
-  button60(BuildContext context) {}
+  button60(BuildContext context) async {}
 
-  button61(BuildContext context) {}
+  button61(BuildContext context) async {}
 
-  button62(BuildContext context) {}
+  button62(BuildContext context) async {}
 
-  button63(BuildContext context) {}
+  button63(BuildContext context) async {}
 
-  button64(BuildContext context) {}
+  button64(BuildContext context) async {}
 
-  button65(BuildContext context) {}
+  button65(BuildContext context) async {}
 
-  button66(BuildContext context) {}
+  button66(BuildContext context) async {}
 
-  button67(BuildContext context) {}
+  button67(BuildContext context) async {}
 
-  button68(BuildContext context) {}
+  button68(BuildContext context) async {}
 
-  button69(BuildContext context) {}
+  button69(BuildContext context) async {}
 
-  button70(BuildContext context) {}
+  button70(BuildContext context) async {}
 
-  button71(BuildContext context) {}
+  button71(BuildContext context) async {}
 
-  button72(BuildContext context) {}
+  button72(BuildContext context) async {}
 
-  button73(BuildContext context) {}
+  button73(BuildContext context) async {}
 
-  button74(BuildContext context) {}
+  button74(BuildContext context) async {}
 
-  button75(BuildContext context) {}
+  button75(BuildContext context) async {}
 
-  button76(BuildContext context) {}
+  button76(BuildContext context) async {}
 
-  button77(BuildContext context) {}
+  button77(BuildContext context) async {}
 
-  button78(BuildContext context) {}
+  button78(BuildContext context) async {}
 
-  button79(BuildContext context) {}
+  button79(BuildContext context) async {}
 
-  button80(BuildContext context) {}
+  button80(BuildContext context) async {}
 
-  button81(BuildContext context) {}
+  button81(BuildContext context) async {}
 
-  button82(BuildContext context) {}
+  button82(BuildContext context) async {}
 
-  button83(BuildContext context) {}
+  button83(BuildContext context) async {}
 
-  button84(BuildContext context) {}
+  button84(BuildContext context) async {}
 
-  button85(BuildContext context) {}
+  button85(BuildContext context) async {}
 
-  button86(BuildContext context) {}
+  button86(BuildContext context) async {}
 
-  button87(BuildContext context) {}
+  button87(BuildContext context) async {}
 
-  button88(BuildContext context) {}
+  button88(BuildContext context) async {}
 
-  button89(BuildContext context) {}
+  button89(BuildContext context) async {}
 
-  button90(BuildContext context) {}
+  button90(BuildContext context) async {}
 
-  button91(BuildContext context) {}
+  button91(BuildContext context) async {}
 
-  button92(BuildContext context) {}
+  button92(BuildContext context) async {}
 
-  button93(BuildContext context) {}
+  button93(BuildContext context) async {}
 
-  button94(BuildContext context) {}
+  button94(BuildContext context) async {}
 
-  button95(BuildContext context) {}
+  button95(BuildContext context) async {}
 
-  button96(BuildContext context) {}
+  button96(BuildContext context) async {}
 
-  button97(BuildContext context) {}
+  button97(BuildContext context) async {}
 
-  button98(BuildContext context) {}
+  button98(BuildContext context) async {}
 
-  button99(BuildContext context) {}
+  button99(BuildContext context) async {}
 
   Widget buttonType(
       {required String buttonName,
