@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_localdb_knowhow/collections/sub/Ingredient/class.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-import '../../../../sub/Ingredient/class.dart';
 import '../../class.dart';
 import 'util/managing_table.dart';
 

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_localdb_knowhow/collections/table/diary/class.dart';
-// import 'package:flutter_localdb_knowhow/collections/table/diary/source/sembast/_.dart';
-// import 'package:flutter_localdb_knowhow/collections/table/diary/source/sqflite/_.dart';
-import 'package:flutter_localdb_knowhow/collections/table/food/source/sqflite/_.dart';
+import 'package:flutter_localdb_knowhow/collections/table/diary/source/sqflite/_.dart';
+
 import 'package:get_storage/get_storage.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import 'collections/sub/Ingredient/class.dart';
-import 'collections/table/food/class.dart';
+import 'collections/table/Food/class.dart';
+import 'collections/table/Food/source/sqflite/_.dart';
+import 'collections/table/diary/class.dart';
+import 'collections/table/diary/source/sembast/_.dart';
 
 void main() async {
   await GetStorage.init();
@@ -42,61 +43,58 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   button00(BuildContext context) async {
-//     var dairyObj = Diary();
-//
-//     dairyObj.Contents = '''
-//     오늘은 예상치 못한 눈이 내렸다. 아침에 창문을 열자마자 하얀 세상이 펼쳐져 있어 깜짝 놀랐다. 출근길, 사람들은 눈 위에서 조심스레 발걸음을 옮기며 웃고 있었다. 점심시간, 나는 동료들과 함께 밖으로 나와 눈싸움도 했다. 작년 겨울에는 제대로 눈이 오지 않아서 많이 아쉬웠는데, 이렇게 올 겨울에는 하얀 선물을 받게 되어 기뻤다.
-//
-// 오후에는 갑작스레 일이 많아져 바빴지만, 창밖으로 내리는 눈을 바라보며 집중력을 얻을 수 있었다. 퇴근길, 하늘은 아직도 하얀 눈송이를 뿌리고 있었다. 집에 돌아와 핫초코를 한잔 마시며 이 편안한 순간을 간직하고 싶다고 생각했다.
-// ''';
-//     dairyObj.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
-//
-//     await DiarySembastObject().upsert(dairyObj);
+    var dairyObj = Diary();
+
+    dairyObj.Contents = '''
+    오늘은 예상치 못한 눈이 내렸다. 아침에 창문을 열자마자 하얀 세상이 펼쳐져 있어 깜짝 놀랐다. 출근길, 사람들은 눈 위에서 조심스레 발걸음을 옮기며 웃고 있었다. 점심시간, 나는 동료들과 함께 밖으로 나와 눈싸움도 했다. 작년 겨울에는 제대로 눈이 오지 않아서 많이 아쉬웠는데, 이렇게 올 겨울에는 하얀 선물을 받게 되어 기뻤다.
+
+오후에는 갑작스레 일이 많아져 바빴지만, 창밖으로 내리는 눈을 바라보며 집중력을 얻을 수 있었다. 퇴근길, 하늘은 아직도 하얀 눈송이를 뿌리고 있었다. 집에 돌아와 핫초코를 한잔 마시며 이 편안한 순간을 간직하고 싶다고 생각했다.
+''';
+    dairyObj.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
+
+    await DiarySembastObject().upsert(dairyObj);
   }
 
   button01(BuildContext context) async {
-    // var objs = await DiarySembastObject().getAll();
-    // for(var obj in objs) {
-    //   print(obj.toString());
-    // }
+    var objs = await DiarySembastObject().getAll();
+    for(var obj in objs) {
+      print(obj.toString());
+    }
   }
 
   button02(BuildContext context) async {
-    // var obj = Diary();
-    // obj.Contents = '오늘은 짧은 휴가를 이용해 도시 공원을 방문했다. 건물과 차들로 북적이는 도시의 한복판에 위치한 이곳은 나의 작은 피난처와 같다. 햇살 아래, 따스한 봄바람이 나를 감싸며 편안함을 전해주었다. 오랜만에 책을 펴고 한가롭게 시간을 보냈다. 휴대폰과 멀어져, 자연의 소리만을 느낄 수 있는 시간이 정말 소중했다.';
+    var obj = Diary();
+    obj.Contents = '오늘은 짧은 휴가를 이용해 도시 공원을 방문했다. 건물과 차들로 북적이는 도시의 한복판에 위치한 이곳은 나의 작은 피난처와 같다. 햇살 아래, 따스한 봄바람이 나를 감싸며 편안함을 전해주었다. 오랜만에 책을 펴고 한가롭게 시간을 보냈다. 휴대폰과 멀어져, 자연의 소리만을 느낄 수 있는 시간이 정말 소중했다.';
     // obj.TodayMood = '좋음';
-    // obj.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
-    //
-    // await DiarySembastObject().upsert(obj);
+    obj.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
+
+    await DiarySembastObject().upsert(obj);
   }
 
   button03(BuildContext context) async {
-//     var dairyObj = Diary();
-//
-//     dairyObj.Contents = '''
-//     오늘은 예상치 못한 눈이 내렸다. 아침에 창문을 열자마자 하얀 세상이 펼쳐져 있어 깜짝 놀랐다. 출근길, 사람들은 눈 위에서 조심스레 발걸음을 옮기며 웃고 있었다. 점심시간, 나는 동료들과 함께 밖으로 나와 눈싸움도 했다. 작년 겨울에는 제대로 눈이 오지 않아서 많이 아쉬웠는데, 이렇게 올 겨울에는 하얀 선물을 받게 되어 기뻤다.
-//
-// 오후에는 갑작스레 일이 많아져 바빴지만, 창밖으로 내리는 눈을 바라보며 집중력을 얻을 수 있었다. 퇴근길, 하늘은 아직도 하얀 눈송이를 뿌리고 있었다. 집에 돌아와 핫초코를 한잔 마시며 이 편안한 순간을 간직하고 싶다고 생각했다.
-// ''';
-//     dairyObj.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
-//
-//     await DiarySqflite().upsert(dairyObj);
+    var dairyObj = Diary();
+
+    dairyObj.Contents = '''오늘은 예상치 못한 눈이 내렸다. 아침에 창문을 열자마자 하얀 세상이 펼쳐져 있어 깜짝 놀랐다. 출근길, 사람들은 눈 위에서 조심스레 발걸음을 옮기며 웃고 있었다. 점심시간, 나는 동료들과 함께 밖으로 나와 눈싸움도 했다. 작년 겨울에는 제대로 눈이 오지 않아서 많이 아쉬웠는데, 이렇게 올 겨울에는 하얀 선물을 받게 되어 기뻤다. 오후에는 갑작스레 일이 많아져 바빴지만, 창밖으로 내리는 눈을 바라보며 집중력을 얻을 수 있었다. 퇴근길, 하늘은 아직도 하얀 눈송이를 뿌리고 있었다. 집에 돌아와 핫초코를 한잔 마시며 이 편안한 순간을 간직하고 싶다고 생각했다.
+''';
+    dairyObj.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
+
+    await DiarySqflite().upsert(dairyObj);
   }
 
   button04(BuildContext context) async {
-    // var objs = await DiarySqflite().getAll();
-    // for(var obj in objs) {
-    //   print(obj.toString());
-    // }
+    var objs = await DiarySqflite().getAll();
+    for(var obj in objs) {
+      print(obj.toString());
+    }
   }
 
   button05(BuildContext context) async {
-    // var obj = Diary();
-    // obj.Contents = '오늘은 짧은 휴가를 이용해 도시 공원을 방문했다. 건물과 차들로 북적이는 도시의 한복판에 위치한 이곳은 나의 작은 피난처와 같다. 햇살 아래, 따스한 봄바람이 나를 감싸며 편안함을 전해주었다. 오랜만에 책을 펴고 한가롭게 시간을 보냈다. 휴대폰과 멀어져, 자연의 소리만을 느낄 수 있는 시간이 정말 소중했다.';
+    var obj = Diary();
+    obj.Contents = '오늘은 짧은 휴가를 이용해 도시 공원을 방문했다. 건물과 차들로 북적이는 도시의 한복판에 위치한 이곳은 나의 작은 피난처와 같다. 햇살 아래, 따스한 봄바람이 나를 감싸며 편안함을 전해주었다. 오랜만에 책을 펴고 한가롭게 시간을 보냈다. 휴대폰과 멀어져, 자연의 소리만을 느낄 수 있는 시간이 정말 소중했다.';
     // obj.TodayMood = '좋음';
-    // obj.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
-    //
-    // await DiarySqflite().upsert(obj);
+    obj.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
+
+    await DiarySqflite().upsert(obj);
   }
 
   button06(BuildContext context) async {
@@ -111,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     var ingredient1 = Ingredient();
     ingredient1.Type = '면';
-    ingredient1.Name = '스파게티';
+    ingredient1.Name = '스파게티면';
     ingredient1.Quantity = 200;
     ingredient1.Unit = 'g';
 

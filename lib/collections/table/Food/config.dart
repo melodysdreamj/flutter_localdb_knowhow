@@ -8,8 +8,8 @@ class FoodConfig {
 
   String generateDocId() {
 
-    // return _generateRandomString();
-    return "Sample";
+    return _generateRandomString(10);
+    // return "Sample";
   }
 }
 

@@ -2,35 +2,35 @@ import 'dart:convert';
 
 import 'package:get_storage/get_storage.dart';
 
-class ManagingFireStoreTableNewModel {
+class ManagingSqfliteTableDiary {
 
-  FireStoreTableNewModel? get() {
+  SqfliteTableDiary get() {
     final box = GetStorage();
 
-    String? json = box.read('ManagingFireStoreTableNewModel');
-    if (json == null) return null;
+    String? json = box.read('ManagingSqfliteTableDiary');
+    if (json == null) return SqfliteTableDiary();
 
-    return FireStoreTableNewModel.fromString(json);
+    return SqfliteTableDiary.fromString(json);
   }
 
-  upsert(FireStoreTableNewModel obj) {
+  upsert(SqfliteTableDiary obj) {
     final box = GetStorage();
     String json = obj.toString();
-    box.write('ManagingFireStoreTableNewModel', json);
+    box.write('ManagingSqfliteTableDiary', json);
   }
 
   delete() {
     final box = GetStorage();
-    box.remove('ManagingFireStoreTableNewModel');
+    box.remove('ManagingSqfliteTableDiary');
   }
 }
 
 
-class FireStoreTableNewModel {
+class SqfliteTableDiary {
 
   int UpdateMillis = 0;
 
-  // int I001 = 0;
+  int Version = 1;
   // int I002 = 0;
   // int I003 = 0;
   // int I004 = 0;
@@ -130,8 +130,8 @@ class FireStoreTableNewModel {
   // int I098 = 0;
   // int I099 = 0;
   //
-  // String S000 = "";
-  // String S001 = "";
+  String Contents = "";
+  // String TodayMood = "";
   // String S002 = "";
   // String S003 = "";
   // String S004 = "";
@@ -295,55 +295,55 @@ class FireStoreTableNewModel {
   // num R029 = 0;
   // num R030 = 0;
   //
-  List<String> Columns = [];
-  // List<String> L001 = [];
-  // List<String> L002 = [];
-  // List<String> L003 = [];
-  // List<String> L004 = [];
-  // List<String> L005 = [];
-  // List<String> L006 = [];
-  // List<String> L007 = [];
-  // List<String> L008 = [];
-  // List<String> L009 = [];
-  // List<String> L010 = [];
-  // List<String> L011 = [];
-  // List<String> L012 = [];
-  // List<String> L013 = [];
-  // List<String> L014 = [];
-  // List<String> L015 = [];
-  // List<String> L016 = [];
-  // List<String> L017 = [];
-  // List<String> L018 = [];
-  // List<String> L019 = [];
-  // List<String> L020 = [];
-  // List<NewModel2> J000 = [];
-  // List<NewModel2> J001 = [];
-  // List<NewModel2> J002 = [];
-  // List<NewModel2> J003 = [];
-  // List<NewModel2> J004 = [];
-  // List<NewModel2> J005 = [];
-  // List<NewModel2> J006 = [];
-  // List<NewModel2> J007 = [];
-  // List<NewModel2> J008 = [];
-  // List<NewModel2> J009 = [];
-  // List<NewModel2> J010 = [];
-  // List<NewModel2> J011 = [];
-  // List<NewModel2> J012 = [];
-  // List<NewModel2> J013 = [];
-  // List<NewModel2> J014 = [];
-  // List<NewModel2> J015 = [];
-  // List<NewModel2> J016 = [];
-  // List<NewModel2> J017 = [];
-  // List<NewModel2> J018 = [];
-  // List<NewModel2> J019 = [];
-  // List<NewModel2> J020 = [];
+  List<dynamic> Columns = [];
+  // List<dynamic> L001 = [];
+  // List<dynamic> L002 = [];
+  // List<dynamic> L003 = [];
+  // List<dynamic> L004 = [];
+  // List<dynamic> L005 = [];
+  // List<dynamic> L006 = [];
+  // List<dynamic> L007 = [];
+  // List<dynamic> L008 = [];
+  // List<dynamic> L009 = [];
+  // List<dynamic> L010 = [];
+  // List<dynamic> L011 = [];
+  // List<dynamic> L012 = [];
+  // List<dynamic> L013 = [];
+  // List<dynamic> L014 = [];
+  // List<dynamic> L015 = [];
+  // List<dynamic> L016 = [];
+  // List<dynamic> L017 = [];
+  // List<dynamic> L018 = [];
+  // List<dynamic> L019 = [];
+  // List<dynamic> L020 = [];
+  // List<Diary2> J000 = [];
+  // List<Diary2> J001 = [];
+  // List<Diary2> J002 = [];
+  // List<Diary2> J003 = [];
+  // List<Diary2> J004 = [];
+  // List<Diary2> J005 = [];
+  // List<Diary2> J006 = [];
+  // List<Diary2> J007 = [];
+  // List<Diary2> J008 = [];
+  // List<Diary2> J009 = [];
+  // List<Diary2> J010 = [];
+  // List<Diary2> J011 = [];
+  // List<Diary2> J012 = [];
+  // List<Diary2> J013 = [];
+  // List<Diary2> J014 = [];
+  // List<Diary2> J015 = [];
+  // List<Diary2> J016 = [];
+  // List<Diary2> J017 = [];
+  // List<Diary2> J018 = [];
+  // List<Diary2> J019 = [];
+  // List<Diary2> J020 = [];
 
 
   @override
   String toString() {
     return jsonEncode({
       'UpdateMillis': UpdateMillis,
-      // 'I001': I001,
+      'Version': Version,
       // 'I002': I002,
       // 'I003': I003,
       // 'I004': I004,
@@ -442,8 +442,8 @@ class FireStoreTableNewModel {
       // 'I097': I097,
       // 'I098': I098,
       // 'I099': I099,
-      // 'S000': S000,
-      // 'S001': S001,
+      'Contents': Contents,
+      // 'TodayMood': TodayMood,
       // 'S002': S002,
       // 'S003': S003,
       // 'S004': S004,
@@ -650,12 +650,12 @@ class FireStoreTableNewModel {
   }
 
   // JSON 문자열을 이용하여 Person 객체를 생성
-  static FireStoreTableNewModel fromString(String jsonString) {
+  static SqfliteTableDiary fromString(String jsonString) {
     final data = jsonDecode(jsonString);
-    var obj = FireStoreTableNewModel();
+    var obj = SqfliteTableDiary();
 
     obj.UpdateMillis = data['UpdateMillis'] ?? 0;
-    // obj.I001 = data['I001'] ?? 0;
+    obj.Version = data['Version'] ?? 0;
     // obj.I002 = data['I002'] ?? 0;
     // obj.I003 = data['I003'] ?? 0;
     // obj.I004 = data['I004'] ?? 0;
@@ -754,8 +754,8 @@ class FireStoreTableNewModel {
     // obj.I097 = data['I097'] ?? 0;
     // obj.I098 = data['I098'] ?? 0;
     // obj.I099 = data['I099'] ?? 0;
-    // obj.S000 = data['S000'] ?? "";
-    // obj.S001 = data['S001'] ?? "";
+    obj.Contents = data['Contents'] ?? "";
+    // obj.TodayMood = data['TodayMood'] ?? "";
     // obj.S002 = data['S002'] ?? "";
     // obj.S003 = data['S003'] ?? "";
     // obj.S004 = data['S004'] ?? "";
@@ -937,27 +937,27 @@ class FireStoreTableNewModel {
     // obj.L018 = data['L018'] ?? [];
     // obj.L019 = data['L019'] ?? [];
     // obj.L020 = data['L020'] ?? [];
-    // obj.J000 = (jsonDecode(data['J000'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J001 = (jsonDecode(data['J001'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J002 = (jsonDecode(data['J002'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J003 = (jsonDecode(data['J003'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J004 = (jsonDecode(data['J004'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J005 = (jsonDecode(data['J005'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J006 = (jsonDecode(data['J006'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J007 = (jsonDecode(data['J007'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J008 = (jsonDecode(data['J008'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J009 = (jsonDecode(data['J009'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J010 = (jsonDecode(data['J010'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J011 = (jsonDecode(data['J011'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J012 = (jsonDecode(data['J012'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J013 = (jsonDecode(data['J013'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J014 = (jsonDecode(data['J014'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J015 = (jsonDecode(data['J015'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J016 = (jsonDecode(data['J016'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J017 = (jsonDecode(data['J017'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J018 = (jsonDecode(data['J018'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J019 = (jsonDecode(data['J019'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J020 = (jsonDecode(data['J020'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
+    // obj.J000 = (jsonDecode(data['J000'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J001 = (jsonDecode(data['J001'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J002 = (jsonDecode(data['J002'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J003 = (jsonDecode(data['J003'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J004 = (jsonDecode(data['J004'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J005 = (jsonDecode(data['J005'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J006 = (jsonDecode(data['J006'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J007 = (jsonDecode(data['J007'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J008 = (jsonDecode(data['J008'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J009 = (jsonDecode(data['J009'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J010 = (jsonDecode(data['J010'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J011 = (jsonDecode(data['J011'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J012 = (jsonDecode(data['J012'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J013 = (jsonDecode(data['J013'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J014 = (jsonDecode(data['J014'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J015 = (jsonDecode(data['J015'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J016 = (jsonDecode(data['J016'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J017 = (jsonDecode(data['J017'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J018 = (jsonDecode(data['J018'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J019 = (jsonDecode(data['J019'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J020 = (jsonDecode(data['J020'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
 
     return obj;
   }

@@ -1,13 +1,15 @@
 import 'dart:convert';
 
+import 'package:flutter_localdb_knowhow/collections/sub/Ingredient/class.dart';
+
 import 'config.dart';
 
-class NewModel {
-  NewModel() {
-    DocId = NewModelConfig.to.generateDocId();
+class Food {
+  Food() {
+    DocId = FoodConfig.to.generateDocId();
   }
 
-  int I000 = 0;
+  int UpdateMillis = 0;
 
   // int I001 = 0;
   // int I002 = 0;
@@ -109,7 +111,7 @@ class NewModel {
   // int I098 = 0;
   // int I099 = 0;
   //
-  // String S000 = "";
+  String FoodName = "";
   // String S001 = "";
   // String S002 = "";
   // String S003 = "";
@@ -274,7 +276,7 @@ class NewModel {
   // num R029 = 0;
   // num R030 = 0;
   //
-  // List<dynamic> L000 = [];
+  List<dynamic> Steps = [];
   // List<dynamic> L001 = [];
   // List<dynamic> L002 = [];
   // List<dynamic> L003 = [];
@@ -296,34 +298,34 @@ class NewModel {
   // List<dynamic> L019 = [];
   // List<dynamic> L020 = [];
   //
-  // List<NewModel2> J000 = [];
-  // List<NewModel2> J001 = [];
-  // List<NewModel2> J002 = [];
-  // List<NewModel2> J003 = [];
-  // List<NewModel2> J004 = [];
-  // List<NewModel2> J005 = [];
-  // List<NewModel2> J006 = [];
-  // List<NewModel2> J007 = [];
-  // List<NewModel2> J008 = [];
-  // List<NewModel2> J009 = [];
-  // List<NewModel2> J010 = [];
-  // List<NewModel2> J011 = [];
-  // List<NewModel2> J012 = [];
-  // List<NewModel2> J013 = [];
-  // List<NewModel2> J014 = [];
-  // List<NewModel2> J015 = [];
-  // List<NewModel2> J016 = [];
-  // List<NewModel2> J017 = [];
-  // List<NewModel2> J018 = [];
-  // List<NewModel2> J019 = [];
-  // List<NewModel2> J020 = [];
+  List<Ingredient> Ingredients = [];
+  // List<Food2> J001 = [];
+  // List<Food2> J002 = [];
+  // List<Food2> J003 = [];
+  // List<Food2> J004 = [];
+  // List<Food2> J005 = [];
+  // List<Food2> J006 = [];
+  // List<Food2> J007 = [];
+  // List<Food2> J008 = [];
+  // List<Food2> J009 = [];
+  // List<Food2> J010 = [];
+  // List<Food2> J011 = [];
+  // List<Food2> J012 = [];
+  // List<Food2> J013 = [];
+  // List<Food2> J014 = [];
+  // List<Food2> J015 = [];
+  // List<Food2> J016 = [];
+  // List<Food2> J017 = [];
+  // List<Food2> J018 = [];
+  // List<Food2> J019 = [];
+  // List<Food2> J020 = [];
 
   String DocId = "";
 
   @override
   String toString() {
     return jsonEncode({
-      'I000': I000,
+      'UpdateMillis': UpdateMillis,
       // 'I001': I001,
       // 'I002': I002,
       // 'I003': I003,
@@ -423,7 +425,7 @@ class NewModel {
       // 'I097': I097,
       // 'I098': I098,
       // 'I099': I099,
-      // 'S000': S000,
+      'FoodName': FoodName,
       // 'S001': S001,
       // 'S002': S002,
       // 'S003': S003,
@@ -585,7 +587,7 @@ class NewModel {
       // 'R028': R028,
       // 'R029': R029,
       // 'R030': R030,
-      // 'L000': L000,
+      'Steps': Steps,
       // 'L001': L001,
       // 'L002': L002,
       // 'L003': L003,
@@ -606,7 +608,7 @@ class NewModel {
       // 'L018': L018,
       // 'L019': L019,
       // 'L020': L020,
-      // 'J000': jsonEncode(J000.map((model) => model.toString()).toList()),
+      'Ingredients': jsonEncode(Ingredients.map((model) => model.toString()).toList()),
       // 'J001': jsonEncode(J001.map((model) => model.toString()).toList()),
       // 'J002': jsonEncode(J002.map((model) => model.toString()).toList()),
       // 'J003': jsonEncode(J003.map((model) => model.toString()).toList()),
@@ -632,11 +634,11 @@ class NewModel {
   }
 
   // JSON 문자열을 이용하여 Person 객체를 생성
-  static NewModel fromString(String jsonString) {
+  static Food fromString(String jsonString) {
     final data = jsonDecode(jsonString);
-    var obj = NewModel();
+    var obj = Food();
 
-    obj.I000 = data['I000'] ?? 0;
+    obj.UpdateMillis = data['UpdateMillis'] ?? 0;
     // obj.I001 = data['I001'] ?? 0;
     // obj.I002 = data['I002'] ?? 0;
     // obj.I003 = data['I003'] ?? 0;
@@ -736,7 +738,7 @@ class NewModel {
     // obj.I097 = data['I097'] ?? 0;
     // obj.I098 = data['I098'] ?? 0;
     // obj.I099 = data['I099'] ?? 0;
-    // obj.S000 = data['S000'] ?? "";
+    obj.FoodName = data['FoodName'] ?? "";
     // obj.S001 = data['S001'] ?? "";
     // obj.S002 = data['S002'] ?? "";
     // obj.S003 = data['S003'] ?? "";
@@ -898,7 +900,7 @@ class NewModel {
     // obj.R028 = data['R028'] ?? 0;
     // obj.R029 = data['R029'] ?? 0;
     // obj.R030 = data['R030'] ?? 0;
-    // obj.L000 = data['L000'] ?? [];
+    obj.Steps = data['Steps'] ?? [];
     // obj.L001 = data['L001'] ?? [];
     // obj.L002 = data['L002'] ?? [];
     // obj.L003 = data['L003'] ?? [];
@@ -919,27 +921,27 @@ class NewModel {
     // obj.L018 = data['L018'] ?? [];
     // obj.L019 = data['L019'] ?? [];
     // obj.L020 = data['L020'] ?? [];
-    // obj.J000 = (jsonDecode(data['J000'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J001 = (jsonDecode(data['J001'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J002 = (jsonDecode(data['J002'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J003 = (jsonDecode(data['J003'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J004 = (jsonDecode(data['J004'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J005 = (jsonDecode(data['J005'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J006 = (jsonDecode(data['J006'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J007 = (jsonDecode(data['J007'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J008 = (jsonDecode(data['J008'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J009 = (jsonDecode(data['J009'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J010 = (jsonDecode(data['J010'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J011 = (jsonDecode(data['J011'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J012 = (jsonDecode(data['J012'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J013 = (jsonDecode(data['J013'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J014 = (jsonDecode(data['J014'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J015 = (jsonDecode(data['J015'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J016 = (jsonDecode(data['J016'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J017 = (jsonDecode(data['J017'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J018 = (jsonDecode(data['J018'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J019 = (jsonDecode(data['J019'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
-    // obj.J020 = (jsonDecode(data['J020'] ?? '[]') as List).map((item) => NewModel2.fromString(item)).toList();
+    obj.Ingredients = (jsonDecode(data['Ingredients'] ?? '[]') as List).map((item) => Ingredient.fromString(item)).toList();
+    // obj.J001 = (jsonDecode(data['J001'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J002 = (jsonDecode(data['J002'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J003 = (jsonDecode(data['J003'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J004 = (jsonDecode(data['J004'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J005 = (jsonDecode(data['J005'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J006 = (jsonDecode(data['J006'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J007 = (jsonDecode(data['J007'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J008 = (jsonDecode(data['J008'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J009 = (jsonDecode(data['J009'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J010 = (jsonDecode(data['J010'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J011 = (jsonDecode(data['J011'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J012 = (jsonDecode(data['J012'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J013 = (jsonDecode(data['J013'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J014 = (jsonDecode(data['J014'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J015 = (jsonDecode(data['J015'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J016 = (jsonDecode(data['J016'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J017 = (jsonDecode(data['J017'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J018 = (jsonDecode(data['J018'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J019 = (jsonDecode(data['J019'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
+    // obj.J020 = (jsonDecode(data['J020'] ?? '[]') as List).map((item) => Food2.fromString(item)).toList();
 
     obj.DocId = data['DocId'];
 
@@ -947,8 +949,8 @@ class NewModel {
   }
 }
 
-const paramListNewModel = [
-  ["I000", "integer"],
+const paramListFood = [
+  ["UpdateMillis", "integer"],
   // ["I001", "integer"],
   // ["I002", "integer"],
   // ["I003", "integer"],
@@ -1048,7 +1050,7 @@ const paramListNewModel = [
   // ["I097", "integer"],
   // ["I098", "integer"],
   // ["I099", "integer"],
-  // ["S000", "string"],
+  ["FoodName", "string"],
   // ["S001", "string"],
   // ["S002", "string"],
   // ["S003", "string"],
@@ -1210,7 +1212,7 @@ const paramListNewModel = [
   // ["R028", "real"],
   // ["R029", "real"],
   // ["R030", "real"],
-  // ["L000", "list"],
+  ["Steps", "list"],
   // ["L001", "list"],
   // ["L002", "list"],
   // ["L003", "list"],
@@ -1231,7 +1233,7 @@ const paramListNewModel = [
   // ["L018", "list"],
   // ["L019", "list"],
   // ["L020", "list"],
-  // ["J000", "list"],
+  ["Ingredients", "list"],
   // ["J001", "classes"],
   // ["J002", "classes"],
   // ["J003", "classes"],
