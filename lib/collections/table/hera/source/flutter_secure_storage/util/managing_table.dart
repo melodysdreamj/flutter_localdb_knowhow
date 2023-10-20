@@ -1,11 +1,32 @@
 import 'dart:convert';
 
-import 'config.dart';
+import 'package:get_storage/get_storage.dart';
 
-class Diary {
-  Diary() {
-    DocId = DiaryConfig.to.generateDocId();
+class ManagingSecureStorageTableHera {
+
+  SecureStorageTableHera get() {
+    final box = GetStorage();
+
+    String? json = box.read('ManagingSecureStorageTableHera');
+    if (json == null) return SecureStorageTableHera();
+
+    return SecureStorageTableHera.fromString(json);
   }
+
+  upsert(SecureStorageTableHera obj) {
+    final box = GetStorage();
+    String json = obj.toString();
+    box.write('ManagingSecureStorageTableHera', json);
+  }
+
+  delete() {
+    final box = GetStorage();
+    box.remove('ManagingSecureStorageTableHera');
+  }
+}
+
+
+class SecureStorageTableHera {
 
   int UpdateMillis = 0;
 
@@ -109,8 +130,8 @@ class Diary {
   // int I098 = 0;
   // int I099 = 0;
   //
-  String Contents = "";
-  // String TodayMood = "";
+  String HeraName = "";
+  // String S001 = "";
   // String S002 = "";
   // String S003 = "";
   // String S004 = "";
@@ -274,51 +295,49 @@ class Diary {
   // num R029 = 0;
   // num R030 = 0;
   //
-  List<dynamic> L000 = [];
-  // List<dynamic> L001 = [];
-  // List<dynamic> L002 = [];
-  // List<dynamic> L003 = [];
-  // List<dynamic> L004 = [];
-  // List<dynamic> L005 = [];
-  // List<dynamic> L006 = [];
-  // List<dynamic> L007 = [];
-  // List<dynamic> L008 = [];
-  // List<dynamic> L009 = [];
-  // List<dynamic> L010 = [];
-  // List<dynamic> L011 = [];
-  // List<dynamic> L012 = [];
-  // List<dynamic> L013 = [];
-  // List<dynamic> L014 = [];
-  // List<dynamic> L015 = [];
-  // List<dynamic> L016 = [];
-  // List<dynamic> L017 = [];
-  // List<dynamic> L018 = [];
-  // List<dynamic> L019 = [];
-  // List<dynamic> L020 = [];
-  //
-  // List<Diary2> J000 = [];
-  // List<Diary2> J001 = [];
-  // List<Diary2> J002 = [];
-  // List<Diary2> J003 = [];
-  // List<Diary2> J004 = [];
-  // List<Diary2> J005 = [];
-  // List<Diary2> J006 = [];
-  // List<Diary2> J007 = [];
-  // List<Diary2> J008 = [];
-  // List<Diary2> J009 = [];
-  // List<Diary2> J010 = [];
-  // List<Diary2> J011 = [];
-  // List<Diary2> J012 = [];
-  // List<Diary2> J013 = [];
-  // List<Diary2> J014 = [];
-  // List<Diary2> J015 = [];
-  // List<Diary2> J016 = [];
-  // List<Diary2> J017 = [];
-  // List<Diary2> J018 = [];
-  // List<Diary2> J019 = [];
-  // List<Diary2> J020 = [];
+  List<String> Columns = [];
+  // List<String> L001 = [];
+  // List<String> L002 = [];
+  // List<String> L003 = [];
+  // List<String> L004 = [];
+  // List<String> L005 = [];
+  // List<String> L006 = [];
+  // List<String> L007 = [];
+  // List<String> L008 = [];
+  // List<String> L009 = [];
+  // List<String> L010 = [];
+  // List<String> L011 = [];
+  // List<String> L012 = [];
+  // List<String> L013 = [];
+  // List<String> L014 = [];
+  // List<String> L015 = [];
+  // List<String> L016 = [];
+  // List<String> L017 = [];
+  // List<String> L018 = [];
+  // List<String> L019 = [];
+  // List<String> L020 = [];
+  // List<Hera2> J000 = [];
+  // List<Hera2> J001 = [];
+  // List<Hera2> J002 = [];
+  // List<Hera2> J003 = [];
+  // List<Hera2> J004 = [];
+  // List<Hera2> J005 = [];
+  // List<Hera2> J006 = [];
+  // List<Hera2> J007 = [];
+  // List<Hera2> J008 = [];
+  // List<Hera2> J009 = [];
+  // List<Hera2> J010 = [];
+  // List<Hera2> J011 = [];
+  // List<Hera2> J012 = [];
+  // List<Hera2> J013 = [];
+  // List<Hera2> J014 = [];
+  // List<Hera2> J015 = [];
+  // List<Hera2> J016 = [];
+  // List<Hera2> J017 = [];
+  // List<Hera2> J018 = [];
+  // List<Hera2> J019 = [];
+  // List<Hera2> J020 = [];
 
-  String DocId = "";
 
   @override
   String toString() {
@@ -423,8 +442,8 @@ class Diary {
       // 'I097': I097,
       // 'I098': I098,
       // 'I099': I099,
-      'Contents': Contents,
-      // 'TodayMood': TodayMood,
+      'HeraName': HeraName,
+      // 'S001': S001,
       // 'S002': S002,
       // 'S003': S003,
       // 'S004': S004,
@@ -585,7 +604,7 @@ class Diary {
       // 'R028': R028,
       // 'R029': R029,
       // 'R030': R030,
-      // 'L000': L000,
+      'Columns': Columns,
       // 'L001': L001,
       // 'L002': L002,
       // 'L003': L003,
@@ -627,14 +646,13 @@ class Diary {
       // 'J018': jsonEncode(J018.map((model) => model.toString()).toList()),
       // 'J019': jsonEncode(J019.map((model) => model.toString()).toList()),
       // 'J020': jsonEncode(J020.map((model) => model.toString()).toList()),
-      'DocId': DocId,
     });
   }
 
   // JSON 문자열을 이용하여 Person 객체를 생성
-  static Diary fromString(String jsonString) {
+  static SecureStorageTableHera fromString(String jsonString) {
     final data = jsonDecode(jsonString);
-    var obj = Diary();
+    var obj = SecureStorageTableHera();
 
     obj.UpdateMillis = data['UpdateMillis'] ?? 0;
     // obj.I001 = data['I001'] ?? 0;
@@ -736,8 +754,8 @@ class Diary {
     // obj.I097 = data['I097'] ?? 0;
     // obj.I098 = data['I098'] ?? 0;
     // obj.I099 = data['I099'] ?? 0;
-    obj.Contents = data['Contents'] ?? "";
-    // obj.TodayMood = data['TodayMood'] ?? "";
+    obj.HeraName = data['HeraName'] ?? "";
+    // obj.S001 = data['S001'] ?? "";
     // obj.S002 = data['S002'] ?? "";
     // obj.S003 = data['S003'] ?? "";
     // obj.S004 = data['S004'] ?? "";
@@ -898,7 +916,7 @@ class Diary {
     // obj.R028 = data['R028'] ?? 0;
     // obj.R029 = data['R029'] ?? 0;
     // obj.R030 = data['R030'] ?? 0;
-    // obj.L000 = data['L000'] ?? [];
+    obj.Columns = data['Columns'] ?? [];
     // obj.L001 = data['L001'] ?? [];
     // obj.L002 = data['L002'] ?? [];
     // obj.L003 = data['L003'] ?? [];
@@ -919,338 +937,28 @@ class Diary {
     // obj.L018 = data['L018'] ?? [];
     // obj.L019 = data['L019'] ?? [];
     // obj.L020 = data['L020'] ?? [];
-    // obj.J000 = (jsonDecode(data['J000'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J001 = (jsonDecode(data['J001'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J002 = (jsonDecode(data['J002'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J003 = (jsonDecode(data['J003'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J004 = (jsonDecode(data['J004'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J005 = (jsonDecode(data['J005'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J006 = (jsonDecode(data['J006'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J007 = (jsonDecode(data['J007'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J008 = (jsonDecode(data['J008'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J009 = (jsonDecode(data['J009'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J010 = (jsonDecode(data['J010'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J011 = (jsonDecode(data['J011'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J012 = (jsonDecode(data['J012'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J013 = (jsonDecode(data['J013'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J014 = (jsonDecode(data['J014'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J015 = (jsonDecode(data['J015'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J016 = (jsonDecode(data['J016'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J017 = (jsonDecode(data['J017'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J018 = (jsonDecode(data['J018'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J019 = (jsonDecode(data['J019'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J020 = (jsonDecode(data['J020'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-
-    obj.DocId = data['DocId'];
+    // obj.J000 = (jsonDecode(data['J000'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J001 = (jsonDecode(data['J001'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J002 = (jsonDecode(data['J002'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J003 = (jsonDecode(data['J003'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J004 = (jsonDecode(data['J004'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J005 = (jsonDecode(data['J005'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J006 = (jsonDecode(data['J006'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J007 = (jsonDecode(data['J007'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J008 = (jsonDecode(data['J008'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J009 = (jsonDecode(data['J009'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J010 = (jsonDecode(data['J010'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J011 = (jsonDecode(data['J011'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J012 = (jsonDecode(data['J012'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J013 = (jsonDecode(data['J013'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J014 = (jsonDecode(data['J014'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J015 = (jsonDecode(data['J015'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J016 = (jsonDecode(data['J016'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J017 = (jsonDecode(data['J017'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J018 = (jsonDecode(data['J018'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J019 = (jsonDecode(data['J019'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J020 = (jsonDecode(data['J020'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
 
     return obj;
   }
 }
-
-const paramListDiary = [
-  ["UpdateMillis", "integer"],
-  // ["I001", "integer"],
-  // ["I002", "integer"],
-  // ["I003", "integer"],
-  // ["I004", "integer"],
-  // ["I005", "integer"],
-  // ["I006", "integer"],
-  // ["I007", "integer"],
-  // ["I008", "integer"],
-  // ["I009", "integer"],
-  // ["I010", "integer"],
-  // ["I011", "integer"],
-  // ["I012", "integer"],
-  // ["I013", "integer"],
-  // ["I014", "integer"],
-  // ["I015", "integer"],
-  // ["I016", "integer"],
-  // ["I017", "integer"],
-  // ["I018", "integer"],
-  // ["I019", "integer"],
-  // ["I020", "integer"],
-  // ["I021", "integer"],
-  // ["I022", "integer"],
-  // ["I023", "integer"],
-  // ["I024", "integer"],
-  // ["I025", "integer"],
-  // ["I026", "integer"],
-  // ["I027", "integer"],
-  // ["I028", "integer"],
-  // ["I029", "integer"],
-  // ["I030", "integer"],
-  // ["I031", "integer"],
-  // ["I032", "integer"],
-  // ["I033", "integer"],
-  // ["I034", "integer"],
-  // ["I035", "integer"],
-  // ["I036", "integer"],
-  // ["I037", "integer"],
-  // ["I038", "integer"],
-  // ["I039", "integer"],
-  // ["I040", "integer"],
-  // ["I041", "integer"],
-  // ["I042", "integer"],
-  // ["I043", "integer"],
-  // ["I044", "integer"],
-  // ["I045", "integer"],
-  // ["I046", "integer"],
-  // ["I047", "integer"],
-  // ["I048", "integer"],
-  // ["I049", "integer"],
-  // ["I050", "integer"],
-  // ["I051", "integer"],
-  // ["I052", "integer"],
-  // ["I053", "integer"],
-  // ["I054", "integer"],
-  // ["I055", "integer"],
-  // ["I056", "integer"],
-  // ["I057", "integer"],
-  // ["I058", "integer"],
-  // ["I059", "integer"],
-  // ["I060", "integer"],
-  // ["I061", "integer"],
-  // ["I062", "integer"],
-  // ["I063", "integer"],
-  // ["I064", "integer"],
-  // ["I065", "integer"],
-  // ["I066", "integer"],
-  // ["I067", "integer"],
-  // ["I068", "integer"],
-  // ["I069", "integer"],
-  // ["I070", "integer"],
-  // ["I071", "integer"],
-  // ["I072", "integer"],
-  // ["I073", "integer"],
-  // ["I074", "integer"],
-  // ["I075", "integer"],
-  // ["I076", "integer"],
-  // ["I077", "integer"],
-  // ["I078", "integer"],
-  // ["I079", "integer"],
-  // ["I080", "integer"],
-  // ["I081", "integer"],
-  // ["I082", "integer"],
-  // ["I083", "integer"],
-  // ["I084", "integer"],
-  // ["I085", "integer"],
-  // ["I086", "integer"],
-  // ["I087", "integer"],
-  // ["I088", "integer"],
-  // ["I089", "integer"],
-  // ["I090", "integer"],
-  // ["I091", "integer"],
-  // ["I092", "integer"],
-  // ["I093", "integer"],
-  // ["I094", "integer"],
-  // ["I095", "integer"],
-  // ["I096", "integer"],
-  // ["I097", "integer"],
-  // ["I098", "integer"],
-  // ["I099", "integer"],
-  ["Contents", "string"],
-  // ["TodayMood", "string"],
-  // ["S002", "string"],
-  // ["S003", "string"],
-  // ["S004", "string"],
-  // ["S005", "string"],
-  // ["S006", "string"],
-  // ["S007", "string"],
-  // ["S008", "string"],
-  // ["S009", "string"],
-  // ["S010", "string"],
-  // ["S011", "string"],
-  // ["S012", "string"],
-  // ["S013", "string"],
-  // ["S014", "string"],
-  // ["S015", "string"],
-  // ["S016", "string"],
-  // ["S017", "string"],
-  // ["S018", "string"],
-  // ["S019", "string"],
-  // ["S020", "string"],
-  // ["S021", "string"],
-  // ["S022", "string"],
-  // ["S023", "string"],
-  // ["S024", "string"],
-  // ["S025", "string"],
-  // ["S026", "string"],
-  // ["S027", "string"],
-  // ["S028", "string"],
-  // ["S029", "string"],
-  // ["S030", "string"],
-  // ["S031", "string"],
-  // ["S032", "string"],
-  // ["S033", "string"],
-  // ["S034", "string"],
-  // ["S035", "string"],
-  // ["S036", "string"],
-  // ["S037", "string"],
-  // ["S038", "string"],
-  // ["S039", "string"],
-  // ["S040", "string"],
-  // ["S041", "string"],
-  // ["S042", "string"],
-  // ["S043", "string"],
-  // ["S044", "string"],
-  // ["S045", "string"],
-  // ["S046", "string"],
-  // ["S047", "string"],
-  // ["S048", "string"],
-  // ["S049", "string"],
-  // ["S050", "string"],
-  // ["S051", "string"],
-  // ["S052", "string"],
-  // ["S053", "string"],
-  // ["S054", "string"],
-  // ["S055", "string"],
-  // ["S056", "string"],
-  // ["S057", "string"],
-  // ["S058", "string"],
-  // ["S059", "string"],
-  // ["S060", "string"],
-  // ["S061", "string"],
-  // ["S062", "string"],
-  // ["S063", "string"],
-  // ["S064", "string"],
-  // ["S065", "string"],
-  // ["S066", "string"],
-  // ["S067", "string"],
-  // ["S068", "string"],
-  // ["S069", "string"],
-  // ["S070", "string"],
-  // ["S071", "string"],
-  // ["S072", "string"],
-  // ["S073", "string"],
-  // ["S074", "string"],
-  // ["S075", "string"],
-  // ["S076", "string"],
-  // ["S077", "string"],
-  // ["S078", "string"],
-  // ["S079", "string"],
-  // ["S080", "string"],
-  // ["S081", "string"],
-  // ["S082", "string"],
-  // ["S083", "string"],
-  // ["S084", "string"],
-  // ["S085", "string"],
-  // ["S086", "string"],
-  // ["S087", "string"],
-  // ["S088", "string"],
-  // ["S089", "string"],
-  // ["S090", "string"],
-  // ["S091", "string"],
-  // ["S092", "string"],
-  // ["S093", "string"],
-  // ["S094", "string"],
-  // ["S095", "string"],
-  // ["S096", "string"],
-  // ["S097", "string"],
-  // ["S098", "string"],
-  // ["S099", "string"],
-  // ["B000", "boolean"],
-  // ["B001", "boolean"],
-  // ["B002", "boolean"],
-  // ["B003", "boolean"],
-  // ["B004", "boolean"],
-  // ["B005", "boolean"],
-  // ["B006", "boolean"],
-  // ["B007", "boolean"],
-  // ["B008", "boolean"],
-  // ["B009", "boolean"],
-  // ["B010", "boolean"],
-  // ["B011", "boolean"],
-  // ["B012", "boolean"],
-  // ["B013", "boolean"],
-  // ["B014", "boolean"],
-  // ["B015", "boolean"],
-  // ["B016", "boolean"],
-  // ["B017", "boolean"],
-  // ["B018", "boolean"],
-  // ["B019", "boolean"],
-  // ["B020", "boolean"],
-  // ["B021", "boolean"],
-  // ["B022", "boolean"],
-  // ["B023", "boolean"],
-  // ["B024", "boolean"],
-  // ["B025", "boolean"],
-  // ["B026", "boolean"],
-  // ["B027", "boolean"],
-  // ["B028", "boolean"],
-  // ["B029", "boolean"],
-  // ["B030", "boolean"],
-  // ["R000", "real"],
-  // ["R001", "real"],
-  // ["R002", "real"],
-  // ["R003", "real"],
-  // ["R004", "real"],
-  // ["R005", "real"],
-  // ["R006", "real"],
-  // ["R007", "real"],
-  // ["R008", "real"],
-  // ["R009", "real"],
-  // ["R010", "real"],
-  // ["R011", "real"],
-  // ["R012", "real"],
-  // ["R013", "real"],
-  // ["R014", "real"],
-  // ["R015", "real"],
-  // ["R016", "real"],
-  // ["R017", "real"],
-  // ["R018", "real"],
-  // ["R019", "real"],
-  // ["R020", "real"],
-  // ["R021", "real"],
-  // ["R022", "real"],
-  // ["R023", "real"],
-  // ["R024", "real"],
-  // ["R025", "real"],
-  // ["R026", "real"],
-  // ["R027", "real"],
-  // ["R028", "real"],
-  // ["R029", "real"],
-  // ["R030", "real"],
-  // ["L000", "list"],
-  // ["L001", "list"],
-  // ["L002", "list"],
-  // ["L003", "list"],
-  // ["L004", "list"],
-  // ["L005", "list"],
-  // ["L006", "list"],
-  // ["L007", "list"],
-  // ["L008", "list"],
-  // ["L009", "list"],
-  // ["L010", "list"],
-  // ["L011", "list"],
-  // ["L012", "list"],
-  // ["L013", "list"],
-  // ["L014", "list"],
-  // ["L015", "list"],
-  // ["L016", "list"],
-  // ["L017", "list"],
-  // ["L018", "list"],
-  // ["L019", "list"],
-  // ["L020", "list"],
-  // ["J000", "list"],
-  // ["J001", "classes"],
-  // ["J002", "classes"],
-  // ["J003", "classes"],
-  // ["J004", "classes"],
-  // ["J005", "classes"],
-  // ["J006", "classes"],
-  // ["J007", "classes"],
-  // ["J008", "classes"],
-  // ["J009", "classes"],
-  // ["J010", "classes"],
-  // ["J011", "classes"],
-  // ["J012", "classes"],
-  // ["J013", "classes"],
-  // ["J014", "classes"],
-  // ["J015", "classes"],
-  // ["J016", "classes"],
-  // ["J017", "classes"],
-  // ["J018", "classes"],
-  // ["J019", "classes"],
-  // ["J020", "classes"],
-  ["DocId", "string"]
-];

@@ -2,31 +2,31 @@ import 'dart:convert';
 
 import 'package:get_storage/get_storage.dart';
 
-class ManagingSembastTableDiary {
+class ManagingSembastTableHera {
 
-  SembastTableDiary get() {
+  SembastTableHera get() {
     final box = GetStorage();
 
-    String? json = box.read('ManagingSembastTableDiary');
-    if (json == null) return SembastTableDiary();
+    String? json = box.read('ManagingSembastTableHera');
+    if (json == null) return SembastTableHera();
 
-    return SembastTableDiary.fromString(json);
+    return SembastTableHera.fromString(json);
   }
 
-  upsert(SembastTableDiary obj) {
+  upsert(SembastTableHera obj) {
     final box = GetStorage();
     String json = obj.toString();
-    box.write('ManagingSembastTableDiary', json);
+    box.write('ManagingSembastTableHera', json);
   }
 
   delete() {
     final box = GetStorage();
-    box.remove('ManagingSembastTableDiary');
+    box.remove('ManagingSembastTableHera');
   }
 }
 
 
-class SembastTableDiary {
+class SembastTableHera {
 
   int UpdateMillis = 0;
 
@@ -130,8 +130,8 @@ class SembastTableDiary {
   // int I098 = 0;
   // int I099 = 0;
   //
-  String Contents = "";
-  // String TodayMood = "";
+  String HeraName = "";
+  // String S001 = "";
   // String S002 = "";
   // String S003 = "";
   // String S004 = "";
@@ -316,27 +316,27 @@ class SembastTableDiary {
   // List<String> L018 = [];
   // List<String> L019 = [];
   // List<String> L020 = [];
-  // List<Diary2> J000 = [];
-  // List<Diary2> J001 = [];
-  // List<Diary2> J002 = [];
-  // List<Diary2> J003 = [];
-  // List<Diary2> J004 = [];
-  // List<Diary2> J005 = [];
-  // List<Diary2> J006 = [];
-  // List<Diary2> J007 = [];
-  // List<Diary2> J008 = [];
-  // List<Diary2> J009 = [];
-  // List<Diary2> J010 = [];
-  // List<Diary2> J011 = [];
-  // List<Diary2> J012 = [];
-  // List<Diary2> J013 = [];
-  // List<Diary2> J014 = [];
-  // List<Diary2> J015 = [];
-  // List<Diary2> J016 = [];
-  // List<Diary2> J017 = [];
-  // List<Diary2> J018 = [];
-  // List<Diary2> J019 = [];
-  // List<Diary2> J020 = [];
+  // List<Hera2> J000 = [];
+  // List<Hera2> J001 = [];
+  // List<Hera2> J002 = [];
+  // List<Hera2> J003 = [];
+  // List<Hera2> J004 = [];
+  // List<Hera2> J005 = [];
+  // List<Hera2> J006 = [];
+  // List<Hera2> J007 = [];
+  // List<Hera2> J008 = [];
+  // List<Hera2> J009 = [];
+  // List<Hera2> J010 = [];
+  // List<Hera2> J011 = [];
+  // List<Hera2> J012 = [];
+  // List<Hera2> J013 = [];
+  // List<Hera2> J014 = [];
+  // List<Hera2> J015 = [];
+  // List<Hera2> J016 = [];
+  // List<Hera2> J017 = [];
+  // List<Hera2> J018 = [];
+  // List<Hera2> J019 = [];
+  // List<Hera2> J020 = [];
 
 
   @override
@@ -442,8 +442,8 @@ class SembastTableDiary {
       // 'I097': I097,
       // 'I098': I098,
       // 'I099': I099,
-      'Contents': Contents,
-      // 'TodayMood': TodayMood,
+      'HeraName': HeraName,
+      // 'S001': S001,
       // 'S002': S002,
       // 'S003': S003,
       // 'S004': S004,
@@ -650,9 +650,9 @@ class SembastTableDiary {
   }
 
   // JSON 문자열을 이용하여 Person 객체를 생성
-  static SembastTableDiary fromString(String jsonString) {
+  static SembastTableHera fromString(String jsonString) {
     final data = jsonDecode(jsonString);
-    var obj = SembastTableDiary();
+    var obj = SembastTableHera();
 
     obj.UpdateMillis = data['UpdateMillis'] ?? 0;
     // obj.I001 = data['I001'] ?? 0;
@@ -754,8 +754,8 @@ class SembastTableDiary {
     // obj.I097 = data['I097'] ?? 0;
     // obj.I098 = data['I098'] ?? 0;
     // obj.I099 = data['I099'] ?? 0;
-    obj.Contents = data['Contents'] ?? "";
-    // obj.TodayMood = data['TodayMood'] ?? "";
+    obj.HeraName = data['HeraName'] ?? "";
+    // obj.S001 = data['S001'] ?? "";
     // obj.S002 = data['S002'] ?? "";
     // obj.S003 = data['S003'] ?? "";
     // obj.S004 = data['S004'] ?? "";
@@ -937,27 +937,27 @@ class SembastTableDiary {
     // obj.L018 = data['L018'] ?? [];
     // obj.L019 = data['L019'] ?? [];
     // obj.L020 = data['L020'] ?? [];
-    // obj.J000 = (jsonDecode(data['J000'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J001 = (jsonDecode(data['J001'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J002 = (jsonDecode(data['J002'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J003 = (jsonDecode(data['J003'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J004 = (jsonDecode(data['J004'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J005 = (jsonDecode(data['J005'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J006 = (jsonDecode(data['J006'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J007 = (jsonDecode(data['J007'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J008 = (jsonDecode(data['J008'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J009 = (jsonDecode(data['J009'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J010 = (jsonDecode(data['J010'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J011 = (jsonDecode(data['J011'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J012 = (jsonDecode(data['J012'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J013 = (jsonDecode(data['J013'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J014 = (jsonDecode(data['J014'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J015 = (jsonDecode(data['J015'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J016 = (jsonDecode(data['J016'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J017 = (jsonDecode(data['J017'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J018 = (jsonDecode(data['J018'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J019 = (jsonDecode(data['J019'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
-    // obj.J020 = (jsonDecode(data['J020'] ?? '[]') as List).map((item) => Diary2.fromString(item)).toList();
+    // obj.J000 = (jsonDecode(data['J000'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J001 = (jsonDecode(data['J001'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J002 = (jsonDecode(data['J002'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J003 = (jsonDecode(data['J003'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J004 = (jsonDecode(data['J004'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J005 = (jsonDecode(data['J005'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J006 = (jsonDecode(data['J006'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J007 = (jsonDecode(data['J007'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J008 = (jsonDecode(data['J008'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J009 = (jsonDecode(data['J009'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J010 = (jsonDecode(data['J010'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J011 = (jsonDecode(data['J011'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J012 = (jsonDecode(data['J012'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J013 = (jsonDecode(data['J013'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J014 = (jsonDecode(data['J014'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J015 = (jsonDecode(data['J015'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J016 = (jsonDecode(data['J016'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J017 = (jsonDecode(data['J017'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J018 = (jsonDecode(data['J018'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J019 = (jsonDecode(data['J019'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
+    // obj.J020 = (jsonDecode(data['J020'] ?? '[]') as List).map((item) => Hera2.fromString(item)).toList();
 
     return obj;
   }

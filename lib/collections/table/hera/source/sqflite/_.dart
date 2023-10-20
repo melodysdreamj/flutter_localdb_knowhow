@@ -8,10 +8,10 @@ import 'package:path/path.dart';
 import '../../class.dart';
 import 'util/managing_table.dart';
 
-class DiarySqflite {
-  Future<Diary?> get(String docId) async {
+class HeraSqflite {
+  Future<Hera?> get(String docId) async {
     await _ready();
-    List<Map> maps = await DiaryDb.query('Diary',
+    List<Map> maps = await HeraDb.query('Hera',
         // columns: [_columnId, s1, s2],//한정해야할필요가 있을때만 적용
         where: 'DocId = ?',
         whereArgs: [docId]);
@@ -21,21 +21,21 @@ class DiarySqflite {
     return null;
   }
 
-  // Future<Diary?> getByUpdateMillis(int value) async {
+  // Future<Hera?> getByHowManyTimeDo(int value) async {
   //   await _ready();
-  //   List<Map> maps = await DiaryDb.query('Diary',
-  //       where: 'UpdateMillis = ?', whereArgs: [value]);
+  //   List<Map> maps = await HeraDb.query('Hera',
+  //       where: 'HowManyTimeDo = ?', whereArgs: [value]);
   //   if (maps.isNotEmpty) {
   //     return fromMap(maps.first);
   //   }
   //   return null;
   // }
 
-  Future<List<Diary>> getAll() async {
+  Future<List<Hera>> getAll() async {
     await _ready();
 
-    List<Map> maps = await DiaryDb.query('Diary');
-    List<Diary> result = [];
+    List<Map> maps = await HeraDb.query('Hera');
+    List<Hera> result = [];
 
     if (maps.isNotEmpty) {
       for (var element in maps) {
@@ -46,14 +46,14 @@ class DiarySqflite {
     return [];
   }
 
-  Future<List<Diary>> getWhere(String where) async {
+  Future<List<Hera>> getWhere(String where) async {
     await _ready();
 
-    List<Map> maps = await DiaryDb.query(
-      'Diary',
+    List<Map> maps = await HeraDb.query(
+      'Hera',
       where: where,
     );
-    List<Diary> result = [];
+    List<Hera> result = [];
 
     if (maps.isNotEmpty) {
       for (var element in maps) {
@@ -64,12 +64,12 @@ class DiarySqflite {
     return [];
   }
 
-  Future<List<Diary>> queryMoreThenUsingUpdateMillis(int time) async {
+  Future<List<Hera>> queryMoreThenUsingHowManyTimeDo(int time) async {
     await _ready();
 
-    List<Map> maps = await DiaryDb.query('Diary',
-        where: 'UpdateMillis > ?', whereArgs: [time]);
-    List<Diary> result = [];
+    List<Map> maps = await HeraDb.query('Hera',
+        where: 'HowManyTimeDo > ?', whereArgs: [time]);
+    List<Hera> result = [];
 
     if (maps.isNotEmpty) {
       for (var element in maps) {
@@ -83,10 +83,10 @@ class DiarySqflite {
   Future<int?> getRowCount() async {
     await _ready();
     return Sqflite.firstIntValue(
-        await DiaryDb.rawQuery('SELECT COUNT(*) FROM Diary'));
+        await HeraDb.rawQuery('SELECT COUNT(*) FROM Hera'));
   }
 
-  Future<void> upsert(Diary newObject) async {
+  Future<void> upsert(Hera newObject) async {
     var oldObject = await get(newObject.DocId);
 
     if (oldObject != null) {
@@ -96,37 +96,37 @@ class DiarySqflite {
     }
   }
 
-  insertBulk(List<Diary> objects) async {
-    Batch batch = DiaryDb.batch();
+  insertBulk(List<Hera> objects) async {
+    Batch batch = HeraDb.batch();
 
     // for loop with index
     for (var i = 0; i < objects.length; i++) {
       var element = objects[i];
-      batch.insert('Diary', toMap(object: element));
+      batch.insert('Hera', toMap(object: element));
     }
 
     await batch.commit(noResult: true);
   }
 
-  Future<int> insert(Diary object) async {
+  Future<int> insert(Hera object) async {
     await _ready();
 
-    return await DiaryDb.insert('Diary', toMap(object: object));
+    return await HeraDb.insert('Hera', toMap(object: object));
   }
 
-  Future<int> update(Diary object, Diary oldObject) async {
+  Future<int> update(Hera object, Hera oldObject) async {
     await _ready();
 
-    return await DiaryDb.update('Diary', toMap(object: object),
+    return await HeraDb.update('Hera', toMap(object: object),
         where: 'DocId = ?', whereArgs: [oldObject.DocId]);
   }
 
 
   ///////////////////////////////////////
-  Map<String, Object?> toMap({required Diary object, String? inputId}) {
+  Map<String, Object?> toMap({required Hera object, String? inputId}) {
     Map<String, Object?> map = <String, Object?>{};
 
-    map["UpdateMillis"] = object.UpdateMillis;
+    map["HowManyTimeDo"] = object.HowManyTimeDo;
     // map["I001"] = object.I001;
     // map["I002"] = object.I002;
     // map["I003"] = object.I003;
@@ -226,8 +226,8 @@ class DiarySqflite {
     // map["I097"] = object.I097;
     // map["I098"] = object.I098;
     // map["I099"] = object.I099;
-    map["Contents"] = object.Contents;
-    // map["TodayMood"] = object.TodayMood;
+    map["HeraName"] = object.HeraName;
+    // map["S001"] = object.S001;
     // map["S002"] = object.S002;
     // map["S003"] = object.S003;
     // map["S004"] = object.S004;
@@ -439,10 +439,10 @@ class DiarySqflite {
     return map;
   }
 
-  Diary fromMap(Map<dynamic, dynamic> map) {
-    Diary object = Diary();
+  Hera fromMap(Map<dynamic, dynamic> map) {
+    Hera object = Hera();
 
-    object.UpdateMillis = map["UpdateMillis"] ?? 0;
+    object.HowManyTimeDo = map["HowManyTimeDo"] ?? 0;
     // object.I001 = map["I001"] ?? 0;
     // object.I002 = map["I002"] ?? 0;
     // object.I003 = map["I003"] ?? 0;
@@ -542,8 +542,8 @@ class DiarySqflite {
     // object.I097 = map["I097"] ?? 0;
     // object.I098 = map["I098"] ?? 0;
     // object.I099 = map["I099"] ?? 0;
-    object.Contents = map["Contents"] ?? "";
-    // object.TodayMood = map["TodayMood"] ?? "";
+    object.HeraName = map["HeraName"] ?? "";
+    // object.S001 = map["S001"] ?? "";
     // object.S002 = map["S002"] ?? "";
     // object.S003 = map["S003"] ?? "";
     // object.S004 = map["S004"] ?? "";
@@ -725,27 +725,27 @@ class DiarySqflite {
     // object.L018 = jsonDecode(map["L018"] ?? "[]");
     // object.L019 = jsonDecode(map["L019"] ?? "[]");
     // object.L020 = jsonDecode(map["L020"] ?? "[]");
-    // object.J000 = (jsonDecode(map["J000"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J001 = (jsonDecode(map["J001"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J002 = (jsonDecode(map["J002"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J003 = (jsonDecode(map["J003"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J004 = (jsonDecode(map["J004"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J005 = (jsonDecode(map["J005"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J006 = (jsonDecode(map["J006"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J007 = (jsonDecode(map["J007"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J008 = (jsonDecode(map["J008"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J009 = (jsonDecode(map["J009"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J010 = (jsonDecode(map["J010"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J011 = (jsonDecode(map["J011"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J012 = (jsonDecode(map["J012"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J013 = (jsonDecode(map["J013"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J014 = (jsonDecode(map["J014"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J015 = (jsonDecode(map["J015"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J016 = (jsonDecode(map["J016"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J017 = (jsonDecode(map["J017"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J018 = (jsonDecode(map["J018"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J019 = (jsonDecode(map["J019"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J020 = (jsonDecode(map["J020"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
+    // object.J000 = (jsonDecode(map["J000"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J001 = (jsonDecode(map["J001"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J002 = (jsonDecode(map["J002"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J003 = (jsonDecode(map["J003"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J004 = (jsonDecode(map["J004"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J005 = (jsonDecode(map["J005"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J006 = (jsonDecode(map["J006"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J007 = (jsonDecode(map["J007"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J008 = (jsonDecode(map["J008"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J009 = (jsonDecode(map["J009"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J010 = (jsonDecode(map["J010"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J011 = (jsonDecode(map["J011"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J012 = (jsonDecode(map["J012"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J013 = (jsonDecode(map["J013"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J014 = (jsonDecode(map["J014"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J015 = (jsonDecode(map["J015"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J016 = (jsonDecode(map["J016"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J017 = (jsonDecode(map["J017"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J018 = (jsonDecode(map["J018"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J019 = (jsonDecode(map["J019"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J020 = (jsonDecode(map["J020"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
 
     if (map["DocId"] != null) {
       object.DocId = map["DocId"];
@@ -756,11 +756,11 @@ class DiarySqflite {
 
   /// 준비중
   ///////////////////////////////////////
-  static late Database DiaryDb;
+  static late Database HeraDb;
 
   static bool _isOpened = false;
   static bool _isDbOpened = false;
-  static const String _dbName = "Diary.db";
+  static const String _dbName = "Hera.db";
 
   _ready() async {
     if (!_isOpened) {
@@ -771,11 +771,11 @@ class DiarySqflite {
 
   Future _open() async {
     await _prepare();
-    await DiaryDb.transaction((txn) async {
+    await HeraDb.transaction((txn) async {
       // Ok
-      await txn.execute("create table if not exists Diary ("
+      await txn.execute("create table if not exists Hera ("
           "DocId text primary key not null"
-          ",UpdateMillis integer not null"
+          ",HowManyTimeDo integer not null"
           // ",I001 integer not null"
           // ",I002 integer not null"
           // ",I003 integer not null"
@@ -875,8 +875,8 @@ class DiarySqflite {
           // ",I097 integer not null"
           // ",I098 integer not null"
           // ",I099 integer not null"
-          ",Contents text not null"
-          // ",TodayMood text not null"
+          ",HeraName text not null"
+          // ",S001 text not null"
           // ",S002 text not null"
           // ",S003 text not null"
           // ",S004 text not null"
@@ -1084,19 +1084,19 @@ class DiarySqflite {
 
     await _handleColumnChanged();
 
-    await createIndexing(DiaryDb);
+    await createIndexing(HeraDb);
   }
 
   _handleColumnChanged() async {
-    var _ = ManagingSqfliteTableDiary().get();
+    var _ = ManagingSqfliteTableHera().get();
 
-    var columns = paramListDiary.map((e) => e[0].toString()).toList();
+    var columns = paramListHera.map((e) => e[0].toString()).toList();
     if (_.UpdateMillis == 0) {
       // 만약 한번도 작동한 적이 없다면 바로 컬럼에 넣어줍니다.
       _.Version = 1;
       _.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
       _.Columns = columns;
-      ManagingSqfliteTableDiary().upsert(_);
+      ManagingSqfliteTableHera().upsert(_);
     }
 
     // 기존 컬럼과의 비교를 해줍니다. (없어진건 삭제하고 새로나온건 추가하는식으로 가자)
@@ -1113,12 +1113,12 @@ class DiarySqflite {
       _.Version++;
       _.UpdateMillis = DateTime.now().millisecondsSinceEpoch;
       _.Columns = columns;
-      ManagingSqfliteTableDiary().upsert(_);
+      ManagingSqfliteTableHera().upsert(_);
     }
 
     // 추가해야하는 부분을 진행해줍니다.
     for (var item in needCreateParams) {
-      var param = paramListDiary.firstWhere((element) => element[0] == item);
+      var param = paramListHera.firstWhere((element) => element[0] == item);
       await _addColumns(param[0], param[1]);
     }
 
@@ -1143,8 +1143,8 @@ class DiarySqflite {
     } else if (columnType == 'classes') {
       defaultValue = "'[]'";
     }
-    await DiaryDb.execute(
-        "ALTER TABLE Diary ADD COLUMN $newColumnName $columnType DEFAULT $defaultValue");
+    await HeraDb.execute(
+        "ALTER TABLE Hera ADD COLUMN $newColumnName $columnType DEFAULT $defaultValue");
   }
 
   _removeColumns(List<dynamic> columnsToDelete) async {
@@ -1154,11 +1154,11 @@ class DiarySqflite {
     }
 
     // 임시 테이블 이름 생성
-    String tempTableName = 'temp_Diary';
+    String tempTableName = 'temp_Hera';
 
     // 기존 테이블의 모든 컬럼 정보 가져오기
     List<Map> columns =
-        await DiaryDb.rawQuery('PRAGMA table_info(Diary)');
+        await HeraDb.rawQuery('PRAGMA table_info(Hera)');
     List<String> allColumnNames =
         columns.map((col) => col['name'] as String).toList();
 
@@ -1167,18 +1167,18 @@ class DiarySqflite {
     String remainingColumns = allColumnNames.join(', ');
 
     // 새로운 임시 테이블 생성과 데이터 복사
-    await DiaryDb.transaction((txn) async {
+    await HeraDb.transaction((txn) async {
       await txn.execute('''
       CREATE TABLE $tempTableName AS 
       SELECT $remainingColumns 
-      FROM Diary
+      FROM Hera
     ''');
 
       // 기존 테이블 삭제
-      await txn.execute('DROP TABLE Diary');
+      await txn.execute('DROP TABLE Hera');
 
       // 임시 테이블의 이름을 원래 테이블 이름으로 변경
-      await txn.execute('ALTER TABLE $tempTableName RENAME TO Diary');
+      await txn.execute('ALTER TABLE $tempTableName RENAME TO Hera');
     });
   }
 
@@ -1187,23 +1187,23 @@ class DiarySqflite {
     final databasePath = await getDatabasesPath();
     final path = join(databasePath, _dbName);
     await Directory(dirname(path)).create(recursive: true);
-    DiaryDb = await openDatabase(path,
-        version: ManagingSqfliteTableDiary().get().Version);
+    HeraDb = await openDatabase(path,
+        version: ManagingSqfliteTableHera().get().Version);
     _isDbOpened = true;
   }
 
   /// sql 인덱싱 해주기(필요한 부분에 인덱스를 추가해줍니다.), 오름차순 내림차순, 및 복합 쿼리같은경우 모두 설정해주면 됩니다.
   createIndexing(Database myDatabase) async {
     final box = GetStorage();
-    if (box.read("DiarySqfliteIndex") != null) {
+    if (box.read("HeraSqfliteIndex") != null) {
       return;
     }
-    box.write("DiarySqfliteIndex", true);
+    box.write("HeraSqfliteIndex", true);
 
     /// 예시
-    // await myDatabase.execute("create index UpdateMillisindex on Diary (UpdateMillis)"); // 단일 인덱싱
-    // await myDatabase.execute("create index UpdateMillisindex on Diary (UpdateMillis DESC)"); // 단일 인덱싱 내림차순
-    // await myDatabase.execute("create index ContentsUpdateMillisindex on Diary (Contents ASC, UpdateMillis DESC)"); // 다중 컬럼 인덱싱
-    // await myDatabase.execute("drop index UpdateMillisindex"); // 인덱싱 삭제
+    // await myDatabase.execute("create index HowManyTimeDoindex on Hera (HowManyTimeDo)"); // 단일 인덱싱
+    // await myDatabase.execute("create index HowManyTimeDoindex on Hera (HowManyTimeDo DESC)"); // 단일 인덱싱 내림차순
+    // await myDatabase.execute("create index HeraNameHowManyTimeDoindex on Hera (HeraName ASC, HowManyTimeDo DESC)"); // 다중 컬럼 인덱싱
+    // await myDatabase.execute("drop index HowManyTimeDoindex"); // 인덱싱 삭제
   }
 }

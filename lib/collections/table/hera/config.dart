@@ -2,8 +2,8 @@ import 'dart:math';
 
 
 
-class DiaryConfig {
-  static DiaryConfig to = DiaryConfig();
+class HeraConfig {
+  static HeraConfig to = HeraConfig();
 
 
   String generateDocId() {

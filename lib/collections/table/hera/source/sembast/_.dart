@@ -9,41 +9,41 @@ import 'package:sqflite/sqflite.dart';
 
 import '../../class.dart';
 
-class DiarySembastObject {
+class HeraSembastObject {
 
 
-  Future<Diary?> get(String docId) async {
+  Future<Hera?> get(String docId) async {
     await _ready();
 
     var record =
-    (await storeDiary.record(docId).getSnapshot(_DiarySembastDb));
+    (await storeHera.record(docId).getSnapshot(_HeraSembastDb));
     if (record != null) {
       return fromMap(record.value as Map);
     }
     return null;
   }
 
-  // Future<Diary?> getByUpdateMillis(int value) async {
-  //   await _ready();
-  //
-  //   var record = await storeDiary.findFirst(_DiarySembastDb,
-  //       finder: sembast.Finder(
-  //           filter: sembast.Filter.equals("UpdateMillis", value)));
-  //   if (record != null) {
-  //     return fromMap(record.value as Map);
-  //   }
-  //   return null;
-  // }
-
-
-
-  Future<List<Diary>> getAll() async {
+  Future<Hera?> getByHowManyTimeDo(int value) async {
     await _ready();
 
-    List<Diary> result = [];
+    var record = await storeHera.findFirst(_HeraSembastDb,
+        finder: sembast.Finder(
+            filter: sembast.Filter.equals("HowManyTimeDo", value)));
+    if (record != null) {
+      return fromMap(record.value as Map);
+    }
+    return null;
+  }
 
-    List<sembast.RecordSnapshot> records = await storeDiary.find(
-      _DiarySembastDb,
+
+
+  Future<List<Hera>> getAll() async {
+    await _ready();
+
+    List<Hera> result = [];
+
+    List<sembast.RecordSnapshot> records = await storeHera.find(
+      _HeraSembastDb,
     );
 
     for (var record in records) {
@@ -55,13 +55,13 @@ class DiarySembastObject {
     return result;
   }
 
-  Future<List<Diary>> getWhere(sembast.Finder finder) async {
+  Future<List<Hera>> getWhere(sembast.Finder finder) async {
     await _ready();
 
-    List<Diary> result = [];
+    List<Hera> result = [];
 
     List<sembast.RecordSnapshot> records =
-        await storeDiary.find(_DiarySembastDb, finder: finder);
+        await storeHera.find(_HeraSembastDb, finder: finder);
 
     for (var record in records) {
       result.add(fromMap(
@@ -73,7 +73,7 @@ class DiarySembastObject {
   }
 
 
-  Future<String> upsert(Diary newObject) async {
+  Future<String> upsert(Hera newObject) async {
     var oldObject = await get(newObject.DocId);
 
     if (oldObject != null) {
@@ -84,28 +84,28 @@ class DiarySembastObject {
     }
   }
 
-  Future<String> insert(Diary object) async {
+  Future<String> insert(Hera object) async {
     await _ready();
-    // int id = await storeDiary.add(_DiarySembastDb, {});
-    await storeDiary.record(object.DocId).put(_DiarySembastDb,
+    // int id = await storeHera.add(_HeraSembastDb, {});
+    await storeHera.record(object.DocId).put(_HeraSembastDb,
         toMap(object: (object), inputId: object.DocId));
     return object.DocId;
   }
 
-  Future<void> update(Diary object, Diary oldObject) async {
+  Future<void> update(Hera object, Hera oldObject) async {
     await _ready();
-    await storeDiary
+    await storeHera
         .record(oldObject.DocId)
-        .put(_DiarySembastDb, toMap(object: object));
+        .put(_HeraSembastDb, toMap(object: object));
   }
 
 
   ///////////////////////////////////////
   ///////////////////////////////////////
-  Map<String, Object?> toMap({required Diary object, String? inputId}) {
+  Map<String, Object?> toMap({required Hera object, String? inputId}) {
     Map<String, Object?> map = <String, Object?>{};
 
-    map["UpdateMillis"] = object.UpdateMillis;
+    map["HowManyTimeDo"] = object.HowManyTimeDo;
     // map["I001"] = object.I001;
     // map["I002"] = object.I002;
     // map["I003"] = object.I003;
@@ -205,8 +205,8 @@ class DiarySembastObject {
     // map["I097"] = object.I097;
     // map["I098"] = object.I098;
     // map["I099"] = object.I099;
-    map["Contents"] = object.Contents;
-    // map["TodayMood"] = object.TodayMood;
+    map["HeraName"] = object.HeraName;
+    // map["S001"] = object.S001;
     // map["S002"] = object.S002;
     // map["S003"] = object.S003;
     // map["S004"] = object.S004;
@@ -418,10 +418,10 @@ class DiarySembastObject {
     return map;
   }
 
-  Diary fromMap(Map<dynamic, dynamic> map) {
-    Diary object = Diary();
+  Hera fromMap(Map<dynamic, dynamic> map) {
+    Hera object = Hera();
 
-    object.UpdateMillis = map["UpdateMillis"] ?? 0;
+    object.HowManyTimeDo = map["HowManyTimeDo"] ?? 0;
     // object.I001 = map["I001"] ?? 0;
     // object.I002 = map["I002"] ?? 0;
     // object.I003 = map["I003"] ?? 0;
@@ -521,8 +521,8 @@ class DiarySembastObject {
     // object.I097 = map["I097"] ?? 0;
     // object.I098 = map["I098"] ?? 0;
     // object.I099 = map["I099"] ?? 0;
-    object.Contents = map["Contents"] ?? "";
-    // object.TodayMood = map["TodayMood"] ?? "";
+    object.HeraName = map["HeraName"] ?? "";
+    // object.S001 = map["S001"] ?? "";
     // object.S002 = map["S002"] ?? "";
     // object.S003 = map["S003"] ?? "";
     // object.S004 = map["S004"] ?? "";
@@ -704,27 +704,27 @@ class DiarySembastObject {
     // object.L018 = jsonDecode(map["L018"] ?? "[]");
     // object.L019 = jsonDecode(map["L019"] ?? "[]");
     // object.L020 = jsonDecode(map["L020"] ?? "[]");
-    // object.J000 = (jsonDecode(map["J000"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J001 = (jsonDecode(map["J001"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J002 = (jsonDecode(map["J002"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J003 = (jsonDecode(map["J003"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J004 = (jsonDecode(map["J004"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J005 = (jsonDecode(map["J005"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J006 = (jsonDecode(map["J006"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J007 = (jsonDecode(map["J007"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J008 = (jsonDecode(map["J008"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J009 = (jsonDecode(map["J009"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J010 = (jsonDecode(map["J010"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J011 = (jsonDecode(map["J011"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J012 = (jsonDecode(map["J012"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J013 = (jsonDecode(map["J013"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J014 = (jsonDecode(map["J014"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J015 = (jsonDecode(map["J015"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J016 = (jsonDecode(map["J016"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J017 = (jsonDecode(map["J017"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J018 = (jsonDecode(map["J018"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J019 = (jsonDecode(map["J019"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
-    // object.J020 = (jsonDecode(map["J020"] ?? "[]") as List).map((item) => Diary2.fromString(item)).toList();
+    // object.J000 = (jsonDecode(map["J000"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J001 = (jsonDecode(map["J001"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J002 = (jsonDecode(map["J002"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J003 = (jsonDecode(map["J003"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J004 = (jsonDecode(map["J004"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J005 = (jsonDecode(map["J005"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J006 = (jsonDecode(map["J006"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J007 = (jsonDecode(map["J007"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J008 = (jsonDecode(map["J008"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J009 = (jsonDecode(map["J009"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J010 = (jsonDecode(map["J010"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J011 = (jsonDecode(map["J011"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J012 = (jsonDecode(map["J012"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J013 = (jsonDecode(map["J013"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J014 = (jsonDecode(map["J014"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J015 = (jsonDecode(map["J015"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J016 = (jsonDecode(map["J016"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J017 = (jsonDecode(map["J017"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J018 = (jsonDecode(map["J018"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J019 = (jsonDecode(map["J019"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
+    // object.J020 = (jsonDecode(map["J020"] ?? "[]") as List).map((item) => Hera2.fromString(item)).toList();
 
     if (map["DocId"] != null) {
       object.DocId = map["DocId"];
@@ -735,9 +735,9 @@ class DiarySembastObject {
 
   /// 준비중
   ///////////////////////////////////////
-  static late sembast.Database _DiarySembastDb;
-  static late sembast.StoreRef storeDiary;
-  static String dbName = "sembast_Diary.db";
+  static late sembast.Database _HeraSembastDb;
+  static late sembast.StoreRef storeHera;
+  static String dbName = "sembast_Hera.db";
 
   static bool _isOpened = false;
   static bool _isDbOpened = false;
@@ -751,7 +751,7 @@ class DiarySembastObject {
 
   Future _open() async {
     await _prepare();
-    storeDiary = sembast.stringMapStoreFactory.store("Diary");
+    storeHera = sembast.stringMapStoreFactory.store("Hera");
   }
 
   _prepare() async {
@@ -762,7 +762,7 @@ class DiarySembastObject {
     await Directory(dirname(path)).create(recursive: true);
     sembast.DatabaseFactory dbFactory = sembast_io.databaseFactoryIo;
 
-    _DiarySembastDb = await dbFactory.openDatabase(path, version: 1); //path
+    _HeraSembastDb = await dbFactory.openDatabase(path, version: 1); //path
     
 
     _isDbOpened = true;
